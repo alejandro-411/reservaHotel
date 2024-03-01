@@ -8,19 +8,19 @@ public class Amenities {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long amenitiesId;
+	private long amenitiesId;
 	
 	@Column(name = "elevator")
-	boolean elevator;
+	private boolean elevator;
 	
 	@Column(name = "pool")
-	boolean pool;
+	private boolean pool;
 	
 	@Column (name = "sauna")
-	boolean sauna;
+	private boolean sauna;
 	
 	@Column(name = "gym")
-	boolean gym;
+	private boolean gym;
 
 	public Amenities(long amenitiesId, boolean elevator, boolean pool, boolean sauna, boolean gym) {
 		super();

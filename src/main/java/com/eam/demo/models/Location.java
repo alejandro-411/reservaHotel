@@ -8,13 +8,13 @@ public class Location {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long locationId;
+	private long locationId;
 	
 	@Column(name = "address")
-	String address;
+	private String address;
 	
 	@Column(name = "neighborhood")
-	String neighborhood;
+	private String neighborhood;
 	
 	@ManyToOne
 	@JoinColumn(name = "cityLocationId", referencedColumnName = "departmentId")

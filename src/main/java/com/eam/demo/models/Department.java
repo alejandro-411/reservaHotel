@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,14 +15,23 @@ public class Department {
 	@Column(name="departmentName")
 	private String departmentName;
 	
+	@OneToMany(mappedBy = "department")
+	private List<City> city;
+	
 	public Department() {
 		
 	}
 	
-	public Department(long departmentId, String departmentName) {
+	
+
+	public Department(Long departmentId, String departmentName, List<City> city) {
+		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
+		this.city = city;
 	}
+
+
 
 	public Long getDepartmentId() {
 		return departmentId;
@@ -37,6 +48,7 @@ public class Department {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
+	
 	
 	
 	

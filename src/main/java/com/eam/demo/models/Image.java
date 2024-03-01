@@ -8,13 +8,13 @@ public class Image {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long imageId;
+	private long imageId;
 	
 	@Column(name = "imageLocation")
-	String imageLocation;
+	private String imageLocation;
 	
 	@Column(name = "imageName")
-	String imageName;
+	private String imageName;
 
 	public Image(long imageId, String imageLocation, String imageName) {
 		this.imageId = imageId;
