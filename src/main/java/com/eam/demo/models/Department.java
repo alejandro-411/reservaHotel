@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Department {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //genera el id como un auto_increment
 	private Long departmentId;
 	
 	@Column(name="departmentName")
