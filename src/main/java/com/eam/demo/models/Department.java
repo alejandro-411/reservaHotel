@@ -15,6 +15,8 @@ public class Department {
 	@Column(name="departmentName")
 	private String departmentName;
 	
+	
+	
 	@OneToMany(mappedBy = "department")
 	private List<City> city;
 	
@@ -29,6 +31,7 @@ public class Department {
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 		this.city = city;
+		System.out.println("Departamenot");
 	}
 
 
