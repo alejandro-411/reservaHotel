@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Table(name="ContactDetails")
@@ -7,17 +9,87 @@ import jakarta.persistence.*;
 public class ContactDetails {
 	
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long contactDetailsId;
-
+	
+	@Column(name = "contactName")
 	private String contactName;
-
+	
+	@Column(name = "contactNumber")
 	private String contactNumber;
-
+	
+	@Column(name = "contactAddress") 
 	private String contactAddress;
-
+	
+	@Column(name = "contactEmail")
 	private String contactEmail;
+	
+	@OneToMany(mappedBy = "contactDetails")
+	private List<User> user;
 
+	public ContactDetails(long contactDetailsId, String contactName, String contactNumber, String contactAddress,
+			String contactEmail, List<User> user) {
+		super();
+		this.contactDetailsId = contactDetailsId;
+		this.contactName = contactName;
+		this.contactNumber = contactNumber;
+		this.contactAddress = contactAddress;
+		this.contactEmail = contactEmail;
+		this.user = user;
+	}
+	
+	public ContactDetails() {
+		
+	}
+
+	public long getContactDetailsId() {
+		return contactDetailsId;
+	}
+
+	public void setContactDetailsId(long contactDetailsId) {
+		this.contactDetailsId = contactDetailsId;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getContactNumber() {
+		return contactNumber;
+	}
+
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
+	}
+
+	public String getContactAddress() {
+		return contactAddress;
+	}
+
+	public void setContactAddress(String contactAddress) {
+		this.contactAddress = contactAddress;
+	}
+
+	public String getContactEmail() {
+		return contactEmail;
+	}
+
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+
+	public List<User> getUser() {
+		return user;
+	}
+
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
+	
 	
 
 }
