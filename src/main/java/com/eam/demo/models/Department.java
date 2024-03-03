@@ -17,29 +17,20 @@ public class Department {
 	private String departmentName;
 	
 	
-	
-	@OneToMany(mappedBy = "department")
-	private List<City> city;
+	@OneToMany(mappedBy = "departments")
+	private List<City> cities;
 	
 	public Department() {
 		
 	}
 	
-	
 
-	
-
-
-	public Department(Long departmentId, String departmentName, List<City> city) {
+	public Department(Long departmentId, String departmentName, List<City> cities) {
 		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
-		this.city = city;
+		this.cities = cities;
 	}
-
-
-
-
 
 
 	public Long getDepartmentId() {
@@ -57,7 +48,6 @@ public class Department {
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	
 	
 	
 	

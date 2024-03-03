@@ -4,7 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-@Table(name = "Hotel")
+@Table(name = "Hotels")
 @Entity
 public class Hotel {
 
@@ -28,8 +28,8 @@ public class Hotel {
 
 
     // Relación OneToMany con la clase Review
-    @OneToMany(mappedBy = "hotel")
-    private List<Review>  review;
+    @OneToMany(mappedBy = "hotels")
+    private List<Review>  reviews;
 
 
  // Relación OneToMany con la clase Review
@@ -49,16 +49,64 @@ public class Hotel {
 
 
 
-
-	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location) {
+	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location,
+			List<Review> reviews, List<Image> images, List<HotelAmenities> hotelAmenities) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
 		this.availability = availability;
 		this.rating = rating;
 		this.location = location;
+		this.reviews = reviews;
+		this.images = images;
+		this.hotelAmenities = hotelAmenities;
 	}
 
+
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+
+
+
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+
+
+
+
+	public List<Image> getImages() {
+		return images;
+	}
+
+
+
+
+
+	public void setImages(List<Image> images) {
+		this.images = images;
+	}
+
+
+
+
+
+	public List<HotelAmenities> getHotelAmenities() {
+		return hotelAmenities;
+	}
+
+
+
+
+
+	public void setHotelAmenities(List<HotelAmenities> hotelAmenities) {
+		this.hotelAmenities = hotelAmenities;
+	}
 
 
 
@@ -70,15 +118,9 @@ public class Hotel {
 
 
 
-
-
-
 	public void setHotelId(long hotelId) {
 		this.hotelId = hotelId;
 	}
-
-
-
 
 
 
@@ -88,15 +130,9 @@ public class Hotel {
 
 
 
-
-
-
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-
-
-
 
 
 
@@ -106,16 +142,9 @@ public class Hotel {
 
 
 
-
-
-
 	public void setAvailability(boolean availability) {
 		this.availability = availability;
 	}
-
-
-
-
 
 
 	public int getRating() {
@@ -123,17 +152,9 @@ public class Hotel {
 	}
 
 
-
-
-
-
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-
-
-
-
 
 
 	public Location getLocation() {
@@ -141,29 +162,9 @@ public class Hotel {
 	}
 
 
-
-
-
-
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

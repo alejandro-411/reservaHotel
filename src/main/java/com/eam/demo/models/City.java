@@ -18,22 +18,22 @@ public class City {
 	private String cityName;
 	
 	@ManyToOne
-	@JoinColumn(name = "departmentCityId", referencedColumnName = "departmentId")
+	@JoinColumn(name = "departments_id", referencedColumnName = "departmentId")
 	private Department department;
 	
 	@OneToMany(mappedBy = "city")
-	private List<Location> location;
+	private List<Location> locations;
 	
 	public City() {
 		
 	}
 
-	public City(long cityId, String cityName, Department department, List<Location> location) {
+	public City(long cityId, String cityName, Department department, List<Location> locations) {
 		super();
 		this.cityId = cityId;
 		this.cityName = cityName;
 		this.department = department;
-		this.location = location;
+		this.locations = locations;
 	}
 
 
@@ -63,11 +63,11 @@ public class City {
 	}
 
 	public List<Location> getLocation() {
-		return location;
+		return locations;
 	}
 
 	public void setLocation(List<Location> location) {
-		this.location = location;
+		this.locations = location;
 	}
 	
 	

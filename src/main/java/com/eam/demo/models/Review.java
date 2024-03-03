@@ -21,7 +21,7 @@ public class Review {
 	private String tittleReview;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "userId")
+	@JoinColumn(name = "users_id", referencedColumnName = "userId")
 	private User user; //el id del usuario
 
 	@Column(name = "contentReview")
@@ -29,7 +29,7 @@ public class Review {
 
 	// Definición de la relación ManyToOne con la entidad hotel
 	@ManyToOne
-	@JoinColumn(name = "hotel_id", referencedColumnName = "hotelId")
+	@JoinColumn(name = "hotels_id", referencedColumnName = "hotelId")
 	private Hotel hotel;
 
 	public Review() {

@@ -3,7 +3,7 @@ package com.eam.demo.models;
 import java.util.List;
 
 import jakarta.persistence.*;
-
+//Clase mapeada
 @Entity
 @Table(name = "Amenities")
 public class Amenities {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+//Clase mapeada
 @Table(name="ContactDetails")
 @Entity
 public class ContactDetails {

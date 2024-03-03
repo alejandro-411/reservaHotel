@@ -1,7 +1,7 @@
 package com.eam.demo.models;
 
 import jakarta.persistence.*;
-
+//Clase mapeada
 @Entity
 @Table(name = "Images")
 public class Image {
@@ -19,10 +19,8 @@ public class Image {
 
 	// Definición de la relación ManyToOne con la entidad Hotel
 	@ManyToOne
-	@JoinColumn(name = "hotel_id", referencedColumnName = "hotelId")
+	@JoinColumn(name = "hotel_Id", referencedColumnName = "hotelId")
 	private Hotel hotel;
-
-
 
 
 	public Image() {
@@ -77,9 +75,6 @@ public class Image {
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
 	}
-
-
-
 
 
 }
