@@ -4,7 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-//Clase mapeada
+//clase mapeada
 @Entity
 @Table(name="Departments")
 public class Department {
@@ -27,13 +27,18 @@ public class Department {
 	
 	
 
+	
+
+
 	public Department(Long departmentId, String departmentName, List<City> city) {
 		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 		this.city = city;
-		System.out.println("Departamenot");
 	}
+
+
+
 
 
 

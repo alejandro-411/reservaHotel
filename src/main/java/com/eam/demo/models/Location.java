@@ -20,6 +20,31 @@ public class Location {
 	@ManyToOne
 	@JoinColumn(name = "cityLocationId", referencedColumnName = "departmentId")
 	private City city;
+	
+
+	
+	 @OneToOne
+	 @JoinColumn(name = "hotel_id",  referencedColumnName = "hotelId")
+	private Hotel hotel;
+
+	public Location() {
+		super();
+	}
+
+	
+	
+	
+	public Location(long locationId, String address, String neighborhood, City city, Hotel hotel) {
+		super();
+		this.locationId = locationId;
+		this.address = address;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.hotel = hotel;
+	}
+
+
+
 
 	public long getLocationId() {
 		return locationId;
@@ -53,16 +78,15 @@ public class Location {
 		this.city = city;
 	}
 
-	public Location() {
-		
+	public Hotel getHotel() {
+		return hotel;
 	}
-	
-	public Location(long locationId, String address, String neighborhood, City city) {
-		this.locationId = locationId;
-		this.address = address;
-		this.neighborhood = neighborhood;
-		this.city = city;
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
+
+
 	
 	
 	
