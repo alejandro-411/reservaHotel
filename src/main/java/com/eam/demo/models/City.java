@@ -1,30 +1,29 @@
 package com.eam.demo.models;
 
-
 import java.util.List;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="City")
+@Table(name = "City")
 public class City {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long cityId;
-	
-	@Column(name="cityName")
+
+	@Column(name = "cityName")
 	private String cityName;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "departmentCityId", referencedColumnName = "departmentId")
+	@JoinColumn(name = "departmentCity_Id", referencedColumnName = "departmentId")
 	private Department department;
-	
+
 	@OneToMany(mappedBy = "city")
 	private List<Location> location;
-	
+
 	public City() {
-		
+
 	}
 
 	public City(long cityId, String cityName, Department department, List<Location> location) {
@@ -35,12 +34,10 @@ public class City {
 		this.location = location;
 	}
 
-
-
 	public long getCityId() {
 		return cityId;
 	}
-	
+
 	public void setCityId(long cityId) {
 		this.cityId = cityId;
 	}
@@ -68,7 +65,5 @@ public class City {
 	public void setLocation(List<Location> location) {
 		this.location = location;
 	}
-	
-	
-	
+
 }

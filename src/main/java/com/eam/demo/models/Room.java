@@ -22,7 +22,7 @@ public class Room {
 	private String amenitiesDetails;
 	
 	@ManyToOne
-	@JoinColumn(name = "roomTypeId", referencedColumnName = "typerRoomId")
+	@JoinColumn(name = "roomTypeId", referencedColumnName = "typeRoomId")
 	private RoomType roomType;
 
     // Definición de la relación ManyToOne con la entidad Booking

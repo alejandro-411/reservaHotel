@@ -30,12 +30,20 @@ public class Department {
 	
 
 
+
+
+
+
 	public Department(Long departmentId, String departmentName, List<City> city) {
 		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 		this.city = city;
 	}
+
+
+
+
 
 
 

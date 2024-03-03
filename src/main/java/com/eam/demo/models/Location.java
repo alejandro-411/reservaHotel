@@ -17,7 +17,7 @@ public class Location {
 	private String neighborhood;
 	
 	@ManyToOne
-	@JoinColumn(name = "cityLocationId", referencedColumnName = "departmentId")
+	@JoinColumn(name = "cityLocationId", referencedColumnName = "cityId")
 	private City city;
 	
 
