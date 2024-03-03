@@ -36,6 +36,10 @@ public class Hotel {
     @OneToMany(mappedBy = "hotel")
     private List<Image>  images;
 
+    
+ // Relación OneToMany con la clase HotelAmenities
+    @OneToMany(mappedBy = "hotel")
+    private List<HotelAmenities> hotelAmenities;
 
 	public Hotel() {
 
