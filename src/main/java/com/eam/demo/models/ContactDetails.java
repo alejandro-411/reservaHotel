@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+//Clase mapeada
 @Table(name="ContactDetails")
 @Entity
 public class ContactDetails {
@@ -25,11 +26,9 @@ public class ContactDetails {
 	private String contactEmail;
 	
 	@OneToMany(mappedBy = "contactDetails")
-	private List<User> user;
-
-	// Relación OneToMany con la clase User
-	@OneToMany(mappedBy = "contactUser")
 	private List<User> users;
+
+	
 	
 	
 

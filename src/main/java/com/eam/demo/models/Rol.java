@@ -4,29 +4,30 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+//clase mapeada
 @Table(name = "Rol")
 @Entity
 public class Rol {
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long rolId;
-	
+
 	@Column(name = "rolName")
 	private String rolName;
-	
+
 	@OneToMany(mappedBy = "rol" )
 	private List<User> users;
 
-	public Rol(long rolId, String rolName, List<User> user) {
+	public Rol(long rolId, String rolName, List<User> users) {
 		super();
 		this.rolId = rolId;
 		this.rolName = rolName;
-		this.users = user;
+		this.users = users;
 	}
-	
+
 	public Rol() {
-		
+
 	}
 
 	public long getRolId() {
@@ -45,13 +46,15 @@ public class Rol {
 		this.rolName = rolName;
 	}
 
-	public List<User> getUser() {
+	public List<User> getUsers() {
 		return users;
 	}
 
-	public void setUser(List<User> user) {
-		this.users = user;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
+
 	
-	
+
+
 }
