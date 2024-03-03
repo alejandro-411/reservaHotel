@@ -18,10 +18,8 @@ public class Location {
 	private String neighborhood;
 	
 	@ManyToOne
-	@JoinColumn(name = "cities_id", referencedColumnName = "departmentId")
+	@JoinColumn(name = "cities_id", referencedColumnName = "cityId")
 	private City city;
-	
-
 	
 	 @OneToOne
 	 @JoinColumn(name = "hotels_id",  referencedColumnName = "hotelId")

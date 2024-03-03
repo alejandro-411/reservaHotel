@@ -45,6 +45,164 @@ public class User {
 
     // Relación OneToMany con la clase Review
     @OneToMany(mappedBy = "user")
-    private List<Review>  review;
+    private List<Review>  reviews;
 
+    
+    // Relación OneToMany con la clase Bookings
+    @OneToMany(mappedBy = "user")
+    private List<Booking>  bokings;
+
+
+    
+    
+	public User() {
+		super();
+	}
+
+
+
+
+	public User(String userId, String userName, String userEmail, String userPassword, String userPhoneNumber,
+			ContactDetails contactDetails, Rol rol, List<Review> reviews, List<Booking> bokings) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+		this.userPhoneNumber = userPhoneNumber;
+		this.contactDetails = contactDetails;
+		this.rol = rol;
+		this.reviews = reviews;
+		this.bokings = bokings;
+	}
+
+
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+
+
+	public String getUserEmail() {
+		return userEmail;
+	}
+
+
+
+
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
+
+
+
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+
+
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+
+
+
+	public String getUserPhoneNumber() {
+		return userPhoneNumber;
+	}
+
+
+
+
+	public void setUserPhoneNumber(String userPhoneNumber) {
+		this.userPhoneNumber = userPhoneNumber;
+	}
+
+
+
+
+	public ContactDetails getContactDetails() {
+		return contactDetails;
+	}
+
+
+
+
+	public void setContactDetails(ContactDetails contactDetails) {
+		this.contactDetails = contactDetails;
+	}
+
+
+
+
+	public Rol getRol() {
+		return rol;
+	}
+
+
+
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+
+
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+
+
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+
+
+
+	public List<Booking> getBokings() {
+		return bokings;
+	}
+
+
+
+
+	public void setBokings(List<Booking> bokings) {
+		this.bokings = bokings;
+	}
+    
+    
+    
+    
 }

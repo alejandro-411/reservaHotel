@@ -1,6 +1,5 @@
 package com.eam.demo.models;
 
-
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -9,23 +8,23 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="Cities")
 public class City {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long cityId;
-	
-	@Column(name="cityName")
+
+	@Column(name = "cityName")
 	private String cityName;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "departments_id", referencedColumnName = "departmentId")
 	private Department department;
-	
+
 	@OneToMany(mappedBy = "city")
 	private List<Location> locations;
 	
 	public City() {
-		
+
 	}
 
 	public City(long cityId, String cityName, Department department, List<Location> locations) {
@@ -36,12 +35,10 @@ public class City {
 		this.locations = locations;
 	}
 
-
-
 	public long getCityId() {
 		return cityId;
 	}
-	
+
 	public void setCityId(long cityId) {
 		this.cityId = cityId;
 	}
@@ -69,7 +66,5 @@ public class City {
 	public void setLocation(List<Location> location) {
 		this.locations = location;
 	}
-	
-	
-	
+
 }

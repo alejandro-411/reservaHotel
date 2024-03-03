@@ -6,7 +6,9 @@ import jakarta.persistence.*;
 @Entity
 public class HotelAmenities {
 	
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	private long idHotelAmenities;
 	
 	 // Definición de la relación ManyToOne con la entidad Amenities
     @ManyToOne
