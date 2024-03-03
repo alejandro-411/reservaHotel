@@ -19,6 +19,7 @@ public class Hotel {
 	@Column(name = "rating")
 	private int rating;
 	
+	@OneToOne
 	@JoinColumn(name = "idLocationHotel", referencedColumnName = "locationId")
 	Location location;
 	

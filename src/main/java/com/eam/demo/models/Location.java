@@ -20,6 +20,10 @@ public class Location {
 	@ManyToOne
 	@JoinColumn(name = "cityLocationId", referencedColumnName = "departmentId")
 	private City city;
+	
+	
+	@JoinColumn(name = "LocationHotel", referencedColumnName = "hotelId")
+	private Hotel hotel;
 
 	public long getLocationId() {
 		return locationId;
