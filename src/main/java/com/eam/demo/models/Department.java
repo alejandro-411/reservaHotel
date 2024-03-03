@@ -17,7 +17,7 @@ public class Department {
 	private String departmentName;
 	
 	
-	@OneToMany(mappedBy = "departments")
+	@OneToMany(mappedBy = "department")
 	private List<City> cities;
 	
 	public Department() {

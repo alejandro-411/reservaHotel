@@ -21,15 +21,13 @@ public class Hotel {
 	@Column(name = "rating")
 	private int rating;
 
-
-
 	@OneToOne(mappedBy = "hotel")
 	private Location location;
 
 
     // Relación OneToMany con la clase Review
-    @OneToMany(mappedBy = "hotels")
-    private List<Review>  reviews;
+    @OneToMany(mappedBy = "hotel")
+    private List<Review>reviews;
 
 
  // Relación OneToMany con la clase Review
@@ -50,14 +48,14 @@ public class Hotel {
 	}
 
 	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location,
-			List<Review> review, List<Image> images, List<HotelAmenities> hotelAmenities, List<Booking> bookings) {
+			List<Review> reviews, List<Image> images, List<HotelAmenities> hotelAmenities, List<Booking> bookings) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
 		this.availability = availability;
 		this.rating = rating;
 		this.location = location;
-		this.review = review;
+		this.reviews = reviews;
 		this.images = images;
 		this.hotelAmenities = hotelAmenities;
 		this.bookings = bookings;
@@ -104,11 +102,11 @@ public class Hotel {
 	}
 
 	public List<Review> getReview() {
-		return review;
+		return reviews;
 	}
 
 	public void setReview(List<Review> review) {
-		this.review = review;
+		this.reviews = review;
 	}
 
 	public List<Image> getImages() {
