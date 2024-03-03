@@ -9,16 +9,23 @@ import jakarta.persistence.*;
 public class ContactDetails {
 
 	@Id
-	@GeneratedValue()
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long contactDetailsId;
-
+	
+	@Column(name = "contactName")
 	private String contactName;
-
+	
+	@Column(name = "contactNumber")
 	private String contactNumber;
-
+	
+	@Column(name = "contactAddress") 
 	private String contactAddress;
-
+	
+	@Column(name = "contactEmail")
 	private String contactEmail;
+	
+	@OneToMany(mappedBy = "contactDetails")
+	private List<User> user;
 
 	// Relación OneToMany con la clase User
 	@OneToMany(mappedBy = "contactUser")
