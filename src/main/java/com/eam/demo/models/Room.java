@@ -2,7 +2,7 @@ package com.eam.demo.models;
 
 import jakarta.persistence.*;
 
-@Table
+@Table(name = "Rooms")
 @Entity
 public class Room {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

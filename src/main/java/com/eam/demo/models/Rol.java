@@ -16,13 +16,13 @@ public class Rol {
 	private String rolName;
 	
 	@OneToMany(mappedBy = "rol" )
-	private List<User> user;
+	private List<User> users;
 
 	public Rol(long rolId, String rolName, List<User> user) {
 		super();
 		this.rolId = rolId;
 		this.rolName = rolName;
-		this.user = user;
+		this.users = user;
 	}
 	
 	public Rol() {
@@ -46,11 +46,11 @@ public class Rol {
 	}
 
 	public List<User> getUser() {
-		return user;
+		return users;
 	}
 
 	public void setUser(List<User> user) {
-		this.user = user;
+		this.users = user;
 	}
 	
 	

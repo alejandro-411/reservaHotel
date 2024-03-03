@@ -2,8 +2,9 @@ package com.eam.demo.models;
 
 import jakarta.persistence.*;
 
+//Clase mapeada
 @Entity
-@Table(name = "Location")
+@Table(name = "Locations")
 public class Location {
 	
 	@Id

@@ -5,8 +5,9 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+//Clase mapeada
 @Entity
-@Table(name="City")
+@Table(name="Cities")
 public class City {
 	
 	@Id

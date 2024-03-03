@@ -3,7 +3,7 @@ package com.eam.demo.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "image")
+@Table(name = "Images")
 public class Image {
 
 	@Id
