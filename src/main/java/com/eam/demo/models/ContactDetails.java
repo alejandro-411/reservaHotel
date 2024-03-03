@@ -25,11 +25,9 @@ public class ContactDetails {
 	private String contactEmail;
 	
 	@OneToMany(mappedBy = "contactDetails")
-	private List<User> user;
-
-	// Relación OneToMany con la clase User
-	@OneToMany(mappedBy = "contactUser")
 	private List<User> users;
+
+	
 	
 	
 

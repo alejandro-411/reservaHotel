@@ -1,30 +1,51 @@
 package com.eam.demo.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Table(name = "Hotel")
 @Entity
 public class Hotel {
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	private long hotelId;
-	
+
 	@Column(name = "hotelName")
 	private String hotelName;
-	
+
 	@Column (name = "availability")
 	private boolean availability;
-	
+
 	@Column(name = "rating")
 	private int rating;
-	
-	@JoinColumn(name = "idLocationHotel", referencedColumnName = "locationId")
-	Location location;
-	
-	
-	
-	
+
+
+
+	@OneToOne(mappedBy = "hotel")
+	private Location location;
+
+
+    // Relación OneToMany con la clase Review
+    @OneToMany(mappedBy = "hotel")
+    private List<Review>  review;
+
+
+ // Relación OneToMany con la clase Review
+    @OneToMany(mappedBy = "hotel")
+    private List<Image>  images;
+
+
+	public Hotel() {
+
+	}
+
+
+
+
+
+
 	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location) {
 		super();
 		this.hotelId = hotelId;
@@ -37,16 +58,13 @@ public class Hotel {
 
 
 
-	public Hotel() {
-		
-	}
-
-
 
 
 	public long getHotelId() {
 		return hotelId;
 	}
+
+
 
 
 
@@ -58,9 +76,13 @@ public class Hotel {
 
 
 
+
+
 	public String getHotelName() {
 		return hotelName;
 	}
+
+
 
 
 
@@ -72,9 +94,13 @@ public class Hotel {
 
 
 
+
+
 	public boolean isAvailability() {
 		return availability;
 	}
+
+
 
 
 
@@ -86,9 +112,13 @@ public class Hotel {
 
 
 
+
+
 	public int getRating() {
 		return rating;
 	}
+
+
 
 
 
@@ -100,6 +130,8 @@ public class Hotel {
 
 
 
+
+
 	public Location getLocation() {
 		return location;
 	}
@@ -107,10 +139,27 @@ public class Hotel {
 
 
 
+
+
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
