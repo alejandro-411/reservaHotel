@@ -1,7 +1,9 @@
 package com.eam.demo.models;
 
-import jakarta.persistence.*;
+import java.util.List;
 
+import jakarta.persistence.*;
+//Clase mapeada
 @Entity
 @Table(name = "Amenities")
 public class Amenities {
@@ -10,30 +12,28 @@ public class Amenities {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long amenitiesId;
 	
-	@Column(name = "elevator")
-	private boolean elevator;
-	
-	@Column(name = "pool")
-	private boolean pool;
-	
-	@Column (name = "sauna")
-	private boolean sauna;
-	
-	@Column(name = "gym")
-	private boolean gym;
+	@Column(name = "amenitiesName")
+	private String amenitiesName;
 
-	public Amenities(long amenitiesId, boolean elevator, boolean pool, boolean sauna, boolean gym) {
-		super();
-		this.amenitiesId = amenitiesId;
-		this.elevator = elevator;
-		this.pool = pool;
-		this.sauna = sauna;
-		this.gym = gym;
-	}
+	
+	// Relación OneToMany con la clase HotelAmenities
+    @OneToMany(mappedBy = "amenities")
+    private List<HotelAmenities> hotelAmenities;
 	
 	public Amenities() {
-		
+		super();
 	}
+
+	
+	
+	public Amenities(long amenitiesId, String amenitiesName, List<HotelAmenities> hotelAmenities) {
+		super();
+		this.amenitiesId = amenitiesId;
+		this.amenitiesName = amenitiesName;
+		this.hotelAmenities = hotelAmenities;
+	}
+
+
 
 	public long getAmenitiesId() {
 		return amenitiesId;
@@ -43,37 +43,24 @@ public class Amenities {
 		this.amenitiesId = amenitiesId;
 	}
 
-	public boolean isElevator() {
-		return elevator;
+	public String getAmenitiesName() {
+		return amenitiesName;
 	}
 
-	public void setElevator(boolean elevator) {
-		this.elevator = elevator;
+	public void setAmenitiesName(String amenitiesName) {
+		this.amenitiesName = amenitiesName;
 	}
 
-	public boolean isPool() {
-		return pool;
+	public List<HotelAmenities> getHotelAmenities() {
+		return hotelAmenities;
 	}
 
-	public void setPool(boolean pool) {
-		this.pool = pool;
+	public void setHotelAmenities(List<HotelAmenities> hotelAmenities) {
+		this.hotelAmenities = hotelAmenities;
 	}
 
-	public boolean isSauna() {
-		return sauna;
-	}
 
-	public void setSauna(boolean sauna) {
-		this.sauna = sauna;
-	}
-
-	public boolean isGym() {
-		return gym;
-	}
-
-	public void setGym(boolean gym) {
-		this.gym = gym;
-	}
+	
 	
 	
 }

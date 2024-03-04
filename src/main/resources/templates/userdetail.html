@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Usuario</title>
+    <!-- Agrega enlaces a tus archivos CSS si los tienes -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Detalles del Usuario</h1>
+
+        <!-- Mostrar detalles del usuario -->
+        <p>Nombre de usuario: <span th:text="${user.userName}"></span></p>
+        <p>Email: <span th:text="${user.userEmail}"></span></p>
+                <p>userPhoneNumber: <span th:text="${user.userPhoneNumber}"></span></p>
+                <p>contactDetails: <span th:text="${user.contactDetails.contactName}"></span></p>
+
+
+        <!-- Agrega más detalles del usuario según sea necesario -->
+
+        <a href="/user">Cerrar sesión</a>
+    </div>
+
+</body>
+</html>
