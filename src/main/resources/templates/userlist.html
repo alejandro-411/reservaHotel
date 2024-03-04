@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+
+    <h2>User List</h2>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>User Phone Number</th>
+                <!-- Agrega más encabezados según sea necesario -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Itera sobre la lista de usuarios -->
+            <tr th:each="user : ${user}">
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.userName}"></td>
+                <td th:text="${user.userEmail}"></td>
+                <td th:text="${user.userPhoneNumber}"></td>
+                <!-- Agrega más columnas según sea necesario -->
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Detalles del usuario -->
+    <h2>User Details</h2>
+    <div th:each="user : ${user}">
+        <h3>User ID: <span th:text="${user.userId}"></span></h3>
+        <p>User Name: <span th:text="${user.userName}"></span></p>
+        <p>User Email: <span th:text="${user.userEmail}"></span></p>
+        <p>User Phone Number: <span th:text="${user.userPhoneNumber}"></span></p>
+        <!-- Agrega más detalles según sea necesario -->
+        
+        <!-- Detalles de la relación ContactDetails -->
+        <h4>Contact Details</h4>
+        <p>Contact ID: <span th:text="${user.contactDetails.contactDetailsId}"></span></p>
+        <!-- Agrega más detalles de ContactDetails según sea necesario -->
+
+        <!-- Detalles de la relación Rol -->
+        <h4>Rol Details</h4>
+        <p>Rol ID: <span th:text="${user.rol.rolId}"></span></p>
+        <!-- Agrega más detalles de Rol según sea necesario -->
+
+        <!-- Detalles de las relaciones OneToMany (Reviews y Bookings) -->
+        <!-- Puedes iterar sobre las listas de Reviews y Bookings si es necesario -->
+    </div>
+
+</body>
+</html>

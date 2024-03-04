@@ -18,12 +18,12 @@ import jakarta.persistence.Table;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String userId;
+	private Long userId;
 
 	@Column(name = "username")
 	private String userName;
 
-	@Column(name = "userEmail")
+	@Column(name = "userEmail", unique=true)
 	private String userEmail;
 
 	@Column(name = "userPassword")
@@ -62,7 +62,7 @@ public class User {
 
 
 
-	public User(String userId, String userName, String userEmail, String userPassword, String userPhoneNumber,
+	public User(Long userId, String userName, String userEmail, String userPassword, String userPhoneNumber,
 			ContactDetails contactDetails, Rol rol, List<Review> reviews, List<Booking> bokings) {
 		super();
 		this.userId = userId;
@@ -79,14 +79,17 @@ public class User {
 
 
 
-	public String getUserId() {
+
+
+
+	public Long getUserId() {
 		return userId;
 	}
 
 
 
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
