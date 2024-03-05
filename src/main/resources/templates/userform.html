@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body>
+
+    <h2>User Form</h2>
+
+    <form th:action="@{/user}" th:object="${user}" method="post">
+        <!-- Campos del formulario -->
+        <label for="userName">User Name:</label>
+        <input type="text" th:field="*{userName}" required>
+        <br>
+
+        <label for="userEmail">User Email:</label>
+        <input type="email" th:field="*{userEmail}" required>
+        <br>
+
+        <label for="userPassword">User Password:</label>
+        <input type="password" th:field="*{userPassword}" required>
+        <br>
+
+        <label for="userPhoneNumber">User Phone Number:</label>
+        <input type="text" th:field="*{userPhoneNumber}" required>
+        <br>
+
+        <!-- Agrega un campo para seleccionar el Rol -->
+        <label for="rol">Rol:</label>
+        <select th:field="*{rol.rolId}" required>
+            <option th:each="r : ${roles}" th:value="${r.rolId}" th:text="${r.rolName}"></option>
+        </select>
+        <br>
+
+        <!-- Agrega un campo para seleccionar los ContactDetails -->
+        <label for="contactDetails">Contact Details:</label>
+        <select th:field="*{contactDetails.contactDetailsId}" required>
+            <option th:each="c : ${contactDetails}" th:value="${c.contactDetailsId}" th:text="${c.contactName}"></option>
+        </select>
+        <br>
+
+        <!-- Puedes agregar más campos según sea necesario -->
+
+        <input type="submit" value="Guardar">
+    </form>
+
+</body>
+</html>

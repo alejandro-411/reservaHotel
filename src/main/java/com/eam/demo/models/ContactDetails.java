@@ -11,7 +11,7 @@ public class ContactDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long contactDetailsId;
+	private Long contactDetailsId;
 	
 	@Column(name = "contactName")
 	private String contactName;
@@ -47,11 +47,11 @@ public class ContactDetails {
 		this.users = users;
 	}
 
-	public long getContactDetailsId() {
+	public Long getContactDetailsId() {
 		return contactDetailsId;
 	}
 
-	public void setContactDetailsId(long contactDetailsId) {
+	public void setContactDetailsId(Long contactDetailsId) {
 		this.contactDetailsId = contactDetailsId;
 	}
 
