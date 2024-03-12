@@ -57,8 +57,8 @@ public class UserController {
 
 		// Agrega detalles de contacto al modelo (asume que contactDetailsRepository.findAll() devuelve una lista de detalles de contacto)
 		List<ContactDetails> contactDetails = contactDetailsRepository.findAll();
-		System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
-		model.addAttribute("contactDetails", contactDetails);
+	//	System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
+		//model.addAttribute("contactDetails", contactDetails);
 
 		// Retorna el nombre de la plantilla (userform.html)
 		return "userform";
