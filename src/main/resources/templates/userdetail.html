@@ -9,18 +9,16 @@
 <body>
 
     <div class="container">
-        <h1>Detalles del Usuario</h1>
+        <h1>User Details</h1>
 
         <!-- Mostrar detalles del usuario -->
-        <p>Nombre de usuario: <span th:text="${user.userName}"></span></p>
+        <p>Name: <span th:text="${user.userName}"></span></p>
         <p>Email: <span th:text="${user.userEmail}"></span></p>
                 <p>userPhoneNumber: <span th:text="${user.userPhoneNumber}"></span></p>
                 <p>contactDetails: <span th:text="${user.contactDetails.contactName}"></span></p>
 
 
-        <!-- Agrega más detalles del usuario según sea necesario -->
-
-        <a href="/user">Cerrar sesión</a>
+        <a href="/user">Sign out</a>
     </div>
 
 </body>

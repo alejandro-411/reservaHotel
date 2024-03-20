@@ -17,8 +17,7 @@ import com.eam.demo.models.User;
 import com.eam.demo.repository.IContactDetailsRepository;
 import com.eam.demo.repository.IRolRepository;
 import com.eam.demo.repository.IUserRepository;
-
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -72,11 +71,19 @@ public class UserController {
 		model.addAttribute("user",users);
 		return "userlist";
 	}
-
+/*
 	@PostMapping("")
 	public String guardarEmpleado(User user) {
 		System.out.println("HOLAAAAAAA");
 		userRepository.save(user);
+		return "redirect:/user";
+	}*/
+
+
+	@PostMapping("/save")
+	public String saveUser(User user, RedirectAttributes ra){
+		userRepository.save(user);
+		ra.addFlashAttribute("message", "The user has ben created succesfully.");
 		return "redirect:/user";
 	}
 
