@@ -4,13 +4,14 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+//Clase mapeada
 @Table(name="ContactDetails")
 @Entity
 public class ContactDetails {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long contactDetailsId;
+	private Long contactDetailsId;
 	
 	@Column(name = "contactName")
 	private String contactName;
@@ -25,28 +26,32 @@ public class ContactDetails {
 	private String contactEmail;
 	
 	@OneToMany(mappedBy = "contactDetails")
-	private List<User> user;
+	private List<User> users;
+
+	
+	
+	
+
+	public ContactDetails() {
+		super();
+	}
 
 	public ContactDetails(long contactDetailsId, String contactName, String contactNumber, String contactAddress,
-			String contactEmail, List<User> user) {
+			String contactEmail, List<User> users) {
 		super();
 		this.contactDetailsId = contactDetailsId;
 		this.contactName = contactName;
 		this.contactNumber = contactNumber;
 		this.contactAddress = contactAddress;
 		this.contactEmail = contactEmail;
-		this.user = user;
-	}
-	
-	public ContactDetails() {
-		
+		this.users = users;
 	}
 
-	public long getContactDetailsId() {
+	public Long getContactDetailsId() {
 		return contactDetailsId;
 	}
 
-	public void setContactDetailsId(long contactDetailsId) {
+	public void setContactDetailsId(Long contactDetailsId) {
 		this.contactDetailsId = contactDetailsId;
 	}
 
@@ -82,14 +87,14 @@ public class ContactDetails {
 		this.contactEmail = contactEmail;
 	}
 
-	public List<User> getUser() {
-		return user;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
-	
-	
 
+
+	
 }

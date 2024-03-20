@@ -16,7 +16,7 @@ public class RoomType {
 	private String roomTypeName;
 	
 	@OneToMany(mappedBy = "roomType")
-	private List<Room> room;
+	private List<Room> rooms;
 	
 	public RoomType() {
 		
@@ -26,7 +26,7 @@ public class RoomType {
 		super();
 		this.typeRoomId = typeRoomId;
 		this.roomTypeName = roomTypeName;
-		this.room = room;
+		this.rooms = room;
 	}
 
 	public long getTypeRoomId() {
@@ -46,11 +46,11 @@ public class RoomType {
 	}
 
 	public List<Room> getRoom() {
-		return room;
+		return rooms;
 	}
 
 	public void setRoom(List<Room> room) {
-		this.room = room;
+		this.rooms = room;
 	}
 	
 	
