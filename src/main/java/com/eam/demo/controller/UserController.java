@@ -15,6 +15,8 @@ import com.eam.demo.models.User;
 import com.eam.demo.repository.IContactDetailsRepository;
 import com.eam.demo.repository.IRolRepository;
 import com.eam.demo.repository.IUserRepository;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/user")
@@ -52,8 +54,8 @@ public class UserController {
 
 		// Agrega detalles de contacto al modelo (asume que contactDetailsRepository.findAll() devuelve una lista de detalles de contacto)
 		List<ContactDetails> contactDetails = contactDetailsRepository.findAll();
-		System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
-		model.addAttribute("contactDetails", contactDetails);
+	//	System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
+		//model.addAttribute("contactDetails", contactDetails);
 
 		// Retorna el nombre de la plantilla (userform.html)
 		return "userform";
@@ -67,11 +69,19 @@ public class UserController {
 		model.addAttribute("user",users);
 		return "userlist";
 	}
-
+/*
 	@PostMapping("")
 	public String guardarEmpleado(User user) {
 		System.out.println("HOLAAAAAAA");
 		userRepository.save(user);
+		return "redirect:/user";
+	}*/
+
+
+	@PostMapping("/save")
+	public String saveUser(User user, RedirectAttributes ra){
+		userRepository.save(user);
+		ra.addFlashAttribute("message", "The user has ben created succesfully.");
 		return "redirect:/user";
 	}
 
