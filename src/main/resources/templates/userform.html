@@ -7,6 +7,7 @@
 <body>
 
     <h2>User Form</h2>
+    <div th:insert="fragments :: botonholis"></div>
 
     <form th:action="@{/user}" th:object="${user}" method="post">
         <!-- Campos del formulario -->
