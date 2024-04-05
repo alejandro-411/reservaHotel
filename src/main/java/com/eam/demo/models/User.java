@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 //clase mapeada
@@ -42,18 +41,7 @@ public class User {
 	@JoinColumn(name = "rol_id", referencedColumnName = "rolId")
 	private Rol rol;
 	
-
-    // Relación OneToMany con la clase Review
-    @OneToMany(mappedBy = "user")
-    private List<Review>  reviews;
-
-    
-    // Relación OneToMany con la clase Bookings
-    @OneToMany(mappedBy = "user")
-    private List<Booking>  bokings;
-
-
-    
+   
     
 	public User() {
 		super();
@@ -72,8 +60,7 @@ public class User {
 		this.userPhoneNumber = userPhoneNumber;
 		this.contactDetails = contactDetails;
 		this.rol = rol;
-		this.reviews = reviews;
-		this.bokings = bokings;
+
 	}
 
 
@@ -180,31 +167,7 @@ public class User {
 
 
 
-	public List<Review> getReviews() {
-		return reviews;
-	}
 
-
-
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-
-
-
-	public List<Booking> getBokings() {
-		return bokings;
-	}
-
-
-
-
-	public void setBokings(List<Booking> bokings) {
-		this.bokings = bokings;
-	}
-    
     
     
     
