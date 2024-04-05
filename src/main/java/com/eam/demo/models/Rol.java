@@ -16,14 +16,11 @@ public class Rol {
 	@Column(name = "rolName")
 	private String rolName;
 
-	@OneToMany(mappedBy = "rol" )
-	private List<User> users;
 
 	public Rol(long rolId, String rolName, List<User> users) {
 		super();
 		this.rolId = rolId;
 		this.rolName = rolName;
-		this.users = users;
 	}
 
 	public Rol() {
@@ -47,15 +44,6 @@ public class Rol {
 		this.rolName = rolName;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
-	
 
 
 }
