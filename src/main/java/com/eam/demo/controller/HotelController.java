@@ -12,28 +12,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.eam.demo.models.ContactDetails;
 import com.eam.demo.models.Rol;
 import com.eam.demo.models.User;
+import com.eam.demo.repository.IBookingRepository;
 import com.eam.demo.repository.IContactDetailsRepository;
+import com.eam.demo.repository.IHotelAmenitiesRepository;
+import com.eam.demo.repository.IImageRepository;
+import com.eam.demo.repository.IReviewRepository;
 import com.eam.demo.repository.IRolRepository;
 import com.eam.demo.repository.IUserRepository;
+import com.eam.demo.repository.IlocationRepository;
+
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/hotel")
 public class HotelController {
 
 	@Autowired
-	private IUserRepository userRepository;
+	private IlocationRepository locationRepository;
+
+
 
 	@Autowired
-	private IRolRepository rolRepository;
-
+	private IImageRepository imageRepository;
+	
 	@Autowired
-	private IContactDetailsRepository contactDetailsRepository;
+	private IHotelAmenitiesRepository hotelAmenitiesRepository;
+
+
+	
 
 	@GetMapping("")
 	public String mostrarFormulario() {
-		return "userHome";
+		return "hotelForm";
 	}
 
 	@GetMapping("/userform")
@@ -120,6 +131,5 @@ public class HotelController {
 		
         return "userdetail";
     }
-
 
 }
