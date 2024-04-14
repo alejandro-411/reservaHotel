@@ -91,7 +91,17 @@ public class UserController {
 		System.out.println("procesarInicioSesion");
 
 		User findUser = userRepository.findByUserEmail(userEmail);
+		System.out.println("Entroooo");
+
+	    System.out.println(findUser);
+	    System.out.println(findUser.getUserEmail());
+	    System.out.println(findUser.getUserPassword());
+	    System.out.println(!findUser.getUserPassword().equals(password));
+	    System.out.println((password));
+	    System.out.println((userEmail));
+
 		if(findUser == null) {
+
 			model.addAttribute("error", true);
 			return "userHome";
 		}
@@ -107,6 +117,7 @@ public class UserController {
 	@GetMapping("/userdetail")
     public String mostrarDetallesUsuario(Model model) {
         // Lógica para obtener detalles del usuario si es necesario
+		
         return "userdetail";
     }
 
