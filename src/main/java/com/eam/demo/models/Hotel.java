@@ -48,17 +48,16 @@ public class Hotel {
 	}
 
 	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location,
-			List<Review> reviews, List<Image> images, List<HotelAmenities> hotelAmenities, List<Booking> bookings) {
+			 List<Image> images, List<HotelAmenities> hotelAmenities) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
 		this.availability = availability;
 		this.rating = rating;
 		this.location = location;
-		this.reviews = reviews;
-		this.images = images;
+	    this.images = images;
 		this.hotelAmenities = hotelAmenities;
-		this.bookings = bookings;
+		
 	}
 
 	public long getHotelId() {

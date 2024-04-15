@@ -1,5 +1,6 @@
 package com.eam.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.eam.demo.models.Amenities;
+import com.eam.demo.models.Booking;
 import com.eam.demo.models.ContactDetails;
+import com.eam.demo.models.Hotel;
+import com.eam.demo.models.HotelAmenities;
+import com.eam.demo.models.Image;
+import com.eam.demo.models.Location;
+import com.eam.demo.models.Review;
 import com.eam.demo.models.Rol;
 import com.eam.demo.models.User;
+import com.eam.demo.repository.IAmenitiesRepository;
 import com.eam.demo.repository.IBookingRepository;
 import com.eam.demo.repository.IContactDetailsRepository;
 import com.eam.demo.repository.IHotelAmenitiesRepository;
+import com.eam.demo.repository.IHotelRepository;
 import com.eam.demo.repository.IImageRepository;
 import com.eam.demo.repository.IReviewRepository;
 import com.eam.demo.repository.IRolRepository;
@@ -37,48 +47,45 @@ public class HotelController {
 	private IImageRepository imageRepository;
 	
 	@Autowired
-	private IHotelAmenitiesRepository hotelAmenitiesRepository;
+	private IAmenitiesRepository amenitiesRepository;
 
+    @Autowired
+	private IHotelRepository hotelRepository;
 
 	
 
 	@GetMapping("")
 	public String mostrarFormulario() {
-		return "hotelForm";
+		return "hotelform";
 	}
 
-	@GetMapping("/userform")
-	public String mostrarFormularioUsuario(Model model) {
-		// Crea un nuevo objeto User y agrégalo al modelo
-		User newUser = new User();
-		newUser.setRol(new Rol());  // Inicializa el objeto Rol
-		newUser.setContactDetails(new ContactDetails()); //inicializa el objeto contac details
-         
-		model.addAttribute("user", newUser);
+	@GetMapping("/hotelform")
+	public String mostrarFormularioHotel(Model model) {
+		   // Crea un nuevo objeto Hotel y agrégalo al modelo
+        Hotel newHotel = new Hotel();
+        newHotel.setLocation(new Location());  // Inicializa el objeto Location
+        newHotel.setImages(new ArrayList<Image>());  // Inicializa la lista de imágenes
 
-		// Agrega roles al modelo (asume que rolesRepository.findAll() devuelve una lista de roles)
-		List<Rol> roles = rolRepository.findAll();
-		System.out.println("roles " + roles.get(0).getRolName());
-		System.out.println("roles " + roles.get(1).getRolName());
+        List<Amenities> amenitiesAvaliable = this.amenitiesRepository.findAll();
+        
+        System.out.println(amenitiesAvaliable.get(0).getAmenitiesName());
+        System.out.println(amenitiesAvaliable.size());
+        
 
-		model.addAttribute("roles", roles);
+        model.addAttribute("amenitiesAvaliable", amenitiesAvaliable);
 
-		// Agrega detalles de contacto al modelo (asume que contactDetailsRepository.findAll() devuelve una lista de detalles de contacto)
-		List<ContactDetails> contactDetails = contactDetailsRepository.findAll();
-	//	System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
-		//model.addAttribute("contactDetails", contactDetails);
+        model.addAttribute("hotel", newHotel);
 
-		// Retorna el nombre de la plantilla (userform.html)
-		return "userform";
+        return "hotel/hotelform";  // Devuelve el nombre de la vista del formulario de hotel
 	}
 
 	@GetMapping("/list")
-	public String mostrarList(User user, Model model) {
+	public String mostrarList(Hotel hotel, Model model) {
 		System.out.println("mostrarList " );
-		List<User> users = userRepository.findAll();
-		System.out.println("Users " + users );
-		model.addAttribute("user",users);
-		return "userlist";
+		List<Hotel> hotels = hotelRepository.findAll();
+		System.out.println("Hotel " + hotels );
+		model.addAttribute("hotel",hotels);
+		return "hotellist";
 	}
 /*
 	@PostMapping("")
@@ -90,46 +97,13 @@ public class HotelController {
 
 
 	@PostMapping("/save")
-	public String saveUser(User user, RedirectAttributes ra){
-		userRepository.save(user);
-		ra.addFlashAttribute("message", "The user has ben created succesfully.");
-		return "redirect:/user";
+	public String saveHotel(Hotel hotel, RedirectAttributes ra){
+		hotelRepository.save(hotel);
+		ra.addFlashAttribute("message", "The hotel has ben created succesfully.");
+		return "redirect:/hotel";
 	}
 
-	@PostMapping("/login")
-	public String procesarInicioSesion(Model model, String userEmail, String password) {
 
-		System.out.println("procesarInicioSesion");
 
-		User findUser = userRepository.findByUserEmail(userEmail);
-		System.out.println("Entroooo");
-
-	    System.out.println(findUser);
-	    System.out.println(findUser.getUserEmail());
-	    System.out.println(findUser.getUserPassword());
-	    System.out.println(!findUser.getUserPassword().equals(password));
-	    System.out.println((password));
-	    System.out.println((userEmail));
-
-		if(findUser == null) {
-
-			model.addAttribute("error", true);
-			return "userHome";
-		}
-
-		if (!findUser.getUserPassword().equals(password)) {
-			model.addAttribute("error", true);
-			return "userHome";
-		}
-        model.addAttribute("user", findUser);  // Puedes pasar más información según sea necesario
-        return "userdetail";
-	}
-
-	@GetMapping("/userdetail")
-    public String mostrarDetallesUsuario(Model model) {
-        // Lógica para obtener detalles del usuario si es necesario
-		
-        return "userdetail";
-    }
 
 }
