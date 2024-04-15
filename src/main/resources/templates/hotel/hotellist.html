@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List of Hotels</title>
+</head>
+<body>
+    <h1>List of Hotels</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Hotel ID</th>
+                <th>Hotel Name</th>
+                <th>Availability</th>
+                <th>Rating</th>
+                <th>Location</th>
+                <th>Images</th>
+                <th>Hotel Amenities</th>
+                <th>Rooms</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="hotel : ${hotels}">
+                <td th:text="${hotel.hotelId}"></td>
+                <td th:text="${hotel.hotelName}"></td>
+                <td th:text="${hotel.availability ? 'Available' : 'Not Available'}"></td>
+                <td th:text="${hotel.rating}"></td>
+                <td th:text="${hotel.location.address} + ', ' + ${hotel.location.neighborhood} + ', ' + ${hotel.location.city.cityName}"></td>
+                <td>
+                    <ul>
+                        <li th:each="image : ${hotel.images}">
+                            <img th:src="@{'data:image/png;base64,' + ${image.imageLocation}}" alt="Imagen" />
+                        </li>
+                    </ul>
+
+                </td>
+                <td>
+                    <ul>
+                        <li th:each="amenity : ${hotel.hotelAmenities}" th:text="${amenity.amenities.amenitiesName}"></li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li th:each="room : ${hotel.rooms}" th:text="${room.roomNumber}"></li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

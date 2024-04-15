@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
+import com.eam.demo.repository.*;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -36,19 +37,9 @@ import com.eam.demo.models.Image;
 import com.eam.demo.models.Location;
 import com.eam.demo.models.Review;
 import com.eam.demo.models.Rol;
+import com.eam.demo.models.Room;
+import com.eam.demo.models.RoomType;
 import com.eam.demo.models.User;
-import com.eam.demo.repository.IAmenitiesRepository;
-import com.eam.demo.repository.IBookingRepository;
-import com.eam.demo.repository.ICityRepository;
-import com.eam.demo.repository.IContactDetailsRepository;
-import com.eam.demo.repository.IDepartmentRepository;
-import com.eam.demo.repository.IHotelAmenitiesRepository;
-import com.eam.demo.repository.IHotelRepository;
-import com.eam.demo.repository.IImageRepository;
-import com.eam.demo.repository.IReviewRepository;
-import com.eam.demo.repository.IRolRepository;
-import com.eam.demo.repository.IUserRepository;
-import com.eam.demo.repository.IlocationRepository;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -78,6 +69,12 @@ public class HotelController {
     @Autowired
 	private IHotelAmenitiesRepository hotelAmenitiesRepository;
 
+    @Autowired
+	private IRoomTypeRepository roomTypeRepository;
+
+	@Autowired
+	private IRoomRepository roomRepository;
+    
 	@GetMapping("")
 	public String mostrarFormulario() {
 		return "hotelform";
@@ -179,7 +176,7 @@ public class HotelController {
 	public String uploadImages(@RequestParam("imageFiles") MultipartFile[] imageFiles, RedirectAttributes ra,
 			@RequestParam("hotelId2") Long hotelId) throws IOException, SerialException, SQLException {
 	    // Lógica para guardar las imágenes recibidas en el repositorio
-		System.out.println("Hotel IDDDDDD" + hotelId);
+		System.out.println("Hotel IDDDDDD " + hotelId);
 		Optional<Hotel> hotel = hotelRepository.findById(hotelId);
 	    for (MultipartFile file : imageFiles) {
 	    	System.out.println(file.getOriginalFilename());
@@ -187,11 +184,57 @@ public class HotelController {
 	       imageRepository.save(new Image(0, new SerialBlob(image), file.getOriginalFilename(), hotel.get()));
 	    }
 	    ra.addFlashAttribute("message", "Images uploaded successfully.");
-	    return "redirect:/hotel/hotelform";  // Redirige a la lista de hoteles u otra página según tu flujo
+		ra.addFlashAttribute("hotelId3", hotelId);
+
+		return "redirect:/hotel/roomform";  // Redirige a la lista de hoteles u otra página según tu flujo
 	}
 
 
+	@GetMapping("/roomform")
+	public String mostrarFormularioRoom(Model model,@ModelAttribute("hotelId3") Long hotelId,RedirectAttributes ra) {
+		  
 
+        List<RoomType> roomTypes = this.roomTypeRepository.findAll();
+        
+        System.out.println(roomTypes.get(0).getRoomTypeName());
+        System.out.println(roomTypes.size());
+        
+
+        model.addAttribute("roomTypes", roomTypes);
+
+        model.addAttribute("room", new Room());
+		System.out.println("HOTEL 444444 " + hotelId);
+	    model.addAttribute("hotelId", hotelId); // Agregar hotelId al modelo
+
+ra.addFlashAttribute("hotelId4", hotelId);
+        return "hotel/roomform";  // Devuelve el nombre de la vista del formulario de hotel
+	}
+
+	@PostMapping(value = "/createroom", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String createRoomHotel( RedirectAttributes ra,Room room,
+			@RequestParam("hotelId4") Long hotelId)  {
+		// Lógica para guardar las imágenes recibidas en el repositorio
+		System.out.println("Hotel 4 ID" + hotelId);
+		Optional<Hotel> hotel = hotelRepository.findById(hotelId);
+		room.setHotel(hotel.get());
+		roomRepository.save(room);
+
+		ra.addFlashAttribute("message", "ROOM uploaded successfully.");
+		return "redirect:/hotel/hotelform";  // Redirige a la lista de hoteles u otra página según tu flujo
+	}
+	
+    @GetMapping("/hotels")
+    public String showHotelList(Model model) {
+        List<Hotel> hotels = this.hotelRepository.findAll(); // Obtener la lista de hoteles desde el repositorio
+System.out.println(hotels.size());
+		System.out.println(hotels.get(0).getLocation().getAddress());
+		System.out.println(hotels.get(0).getLocation().getNeighborhood());
+		System.out.println(hotels.get(0).getLocation().getCity().getCityName());
+
+        model.addAttribute("hotels", hotels); // Agregar la lista de hoteles al modelo
+
+        return "hotel/hotellist"; // Renderizar el template hotelList.html en Thymeleaf
+    }
 
 
 }
