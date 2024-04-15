@@ -1,5 +1,7 @@
 package com.eam.demo.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -7,11 +9,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -105,7 +112,7 @@ public class HotelController {
 		return "hotellist";
 	}
 
-	@PostMapping(value = "/save", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String saveHotel(Hotel hotel, RedirectAttributes ra,
 			@RequestParam("amenities") Long[] amenitiesIds){
 		System.out.println("ENTROOOO");
@@ -153,9 +160,36 @@ public class HotelController {
 		
 		
 		ra.addFlashAttribute("message", "The hotel has ben created succesfully.");
+		ra.addFlashAttribute("hotelId", hotelSaved.getHotelId());
 
-		return "hotel/imagesform";
+		return "redirect:/hotel/imagesform";
 	}
+	
+	@GetMapping("/imagesform")
+	public String showImagesForm(Model model, @ModelAttribute("hotelId") Long hotelId,RedirectAttributes ra) {
+		System.out.println("Entro");
+	    System.out.println("Hotel ID: " + hotelId);
+		ra.addFlashAttribute("hotelId2", hotelId);
+
+	    // Lógica para cargar datos en el modelo
+	    return "hotel/imagesform";
+	}
+	
+	@PostMapping(value = "/uploadImages", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String uploadImages(@RequestParam("imageFiles") MultipartFile[] imageFiles, RedirectAttributes ra,
+			@RequestParam("hotelId2") Long hotelId) throws IOException, SerialException, SQLException {
+	    // Lógica para guardar las imágenes recibidas en el repositorio
+		System.out.println("Hotel IDDDDDD" + hotelId);
+		Optional<Hotel> hotel = hotelRepository.findById(hotelId);
+	    for (MultipartFile file : imageFiles) {
+	    	System.out.println(file.getOriginalFilename());
+	        byte[] image = Base64.encodeBase64(file.getBytes(), false);
+	       imageRepository.save(new Image(0, new SerialBlob(image), file.getOriginalFilename(), hotel.get()));
+	    }
+	    ra.addFlashAttribute("message", "Images uploaded successfully.");
+	    return "redirect:/hotel/hotelform";  // Redirige a la lista de hoteles u otra página según tu flujo
+	}
+
 
 
 

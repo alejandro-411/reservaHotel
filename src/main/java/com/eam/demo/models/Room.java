@@ -41,7 +41,7 @@ public class Room {
 	}
 
 	public Room(long roomId, int roomNumber, double pricePerNight, boolean avalability, String amenitiesDetails,
-			RoomType roomType, Booking booking, Hotel hotel) {
+			RoomType roomType, Hotel hotel) {
 		super();
 		this.roomId = roomId;
 		this.roomNumber = roomNumber;
@@ -49,7 +49,6 @@ public class Room {
 		this.avalability = avalability;
 		this.amenitiesDetails = amenitiesDetails;
 		this.roomType = roomType;
-		this.booking = booking;
 		this.hotel=hotel;
 	}
 
