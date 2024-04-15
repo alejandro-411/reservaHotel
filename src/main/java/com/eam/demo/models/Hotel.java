@@ -42,13 +42,18 @@ public class Hotel {
     // Relación OneToMany con la clase Booking
     @OneToMany(mappedBy = "hotel")
     private List<Booking> bookings;
+    
+    // Relación OneToMany con la clase Room
+    @OneToMany(mappedBy = "hotel")
+    private List<Room> rooms;
+    
 
 	public Hotel() {
 
 	}
 
 	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location,
-			 List<Image> images, List<HotelAmenities> hotelAmenities) {
+			 List<Image> images, List<HotelAmenities> hotelAmenities, List<Room> rooms) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
@@ -57,6 +62,7 @@ public class Hotel {
 		this.location = location;
 	    this.images = images;
 		this.hotelAmenities = hotelAmenities;
+		this.rooms=rooms;
 		
 	}
 
@@ -130,6 +136,22 @@ public class Hotel {
 
 	public void setBookings(List<Booking> bookings) {
 		this.bookings = bookings;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 

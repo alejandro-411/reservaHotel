@@ -10,7 +10,7 @@
          <div class="text-center">
             <h2>Add New Hotel</h2>
          </div>
-         <form th:action="@{/hotel/save}" method="post" th:object="${hotel}" style="max-width: 500px; margin: 0 auto;">
+         <form th:action="@{/hotel/save}" method="post" th:object="${hotel}" style="max-width: 500px; margin: 0 auto;"  enctype="multipart/form-data">
             <div class ="border border-secondary rounded p-3">
                <div class = "form-group row">
                   <label class = "col-sm-4 col-form-label">Name Hotel</label>
@@ -23,8 +23,8 @@
                   <label class = "col-sm-4 col-form-label">Availability</label>
                   <div class="col-sm-8">
                      <select class="form-control" th:field="*{availability}">
-                        <option value="true">busy</option>
-                        <option value="false">available</option>
+                        <option value="true">available</option>
+                        <option value="false">busy</option>
                      </select>
                   </div>
                </div>
@@ -81,9 +81,22 @@
                         </div>
                      </div>
                   </div>
+                  
+                  
+                  
                </div>
+            </div>
+                        <div class = "text-center">
+                <button type="submit" class="btn btn-primary m-2">Save</button>
+                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
             </div>
          </form>
       </div>
+      
+      <script type="text/javascript">
+    function cancelForm(){
+        window.location =  "[[@{/user}]]";
+    }
+</script>
    </body>
 </html>
