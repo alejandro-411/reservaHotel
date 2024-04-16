@@ -220,7 +220,7 @@ ra.addFlashAttribute("hotelId4", hotelId);
 		roomRepository.save(room);
 
 		ra.addFlashAttribute("message", "ROOM uploaded successfully.");
-		return "redirect:/hotel/hotelform";  // Redirige a la lista de hoteles u otra página según tu flujo
+		return "redirect:/hotel/hotels";  // Redirige a la lista de hoteles u otra página según tu flujo
 	}
 	
     @GetMapping("/hotels")
