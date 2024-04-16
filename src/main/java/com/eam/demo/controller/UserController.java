@@ -1,7 +1,5 @@
 package com.eam.demo.controller;
 
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +41,14 @@ public class UserController {
 		// Crea un nuevo objeto User y agrégalo al modelo
 		User newUser = new User();
 		newUser.setRol(new Rol());  // Inicializa el objeto Rol
-		newUser.setContactDetails(new ContactDetails());
-
+		newUser.setContactDetails(new ContactDetails()); //inicializa el objeto contac details
+         
 		model.addAttribute("user", newUser);
 
 		// Agrega roles al modelo (asume que rolesRepository.findAll() devuelve una lista de roles)
 		List<Rol> roles = rolRepository.findAll();
 		System.out.println("roles " + roles.get(0).getRolName());
-		System.out.println("roles " + roles.get(1).getRolName());
+		//System.out.println("roles " + roles.get(1).getRolName());
 
 		model.addAttribute("roles", roles);
 
@@ -105,10 +103,12 @@ public class UserController {
         model.addAttribute("user", findUser);  // Puedes pasar más información según sea necesario
         return "userdetail";
 	}
+
 	@GetMapping("/userdetail")
     public String mostrarDetallesUsuario(Model model) {
         // Lógica para obtener detalles del usuario si es necesario
         return "userdetail";
     }
+
 
 }
