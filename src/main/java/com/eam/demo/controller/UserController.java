@@ -48,7 +48,6 @@ public class UserController {
 		// Agrega roles al modelo (asume que rolesRepository.findAll() devuelve una lista de roles)
 		List<Rol> roles = rolRepository.findAll();
 		System.out.println("roles " + roles.get(0).getRolName());
-		System.out.println("roles " + roles.get(1).getRolName());
 
 		model.addAttribute("roles", roles);
 

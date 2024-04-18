@@ -19,11 +19,6 @@ public class ContactDetails {
 	@Column(name = "contactNumber")
 	private String contactNumber;
 	
-	@Column(name = "contactAddress") 
-	private String contactAddress;
-	
-	@Column(name = "contactEmail")
-	private String contactEmail;
 	
 	@OneToMany(mappedBy = "contactDetails")
 	private List<User> users;
@@ -36,15 +31,12 @@ public class ContactDetails {
 		super();
 	}
 
-	public ContactDetails(long contactDetailsId, String contactName, String contactNumber, String contactAddress,
-			String contactEmail, List<User> users) {
+	public ContactDetails(long contactDetailsId, String contactName, String contactNumber) {
 		super();
 		this.contactDetailsId = contactDetailsId;
 		this.contactName = contactName;
 		this.contactNumber = contactNumber;
-		this.contactAddress = contactAddress;
-		this.contactEmail = contactEmail;
-		this.users = users;
+		
 	}
 
 	public Long getContactDetailsId() {
@@ -71,21 +63,7 @@ public class ContactDetails {
 		this.contactNumber = contactNumber;
 	}
 
-	public String getContactAddress() {
-		return contactAddress;
-	}
 
-	public void setContactAddress(String contactAddress) {
-		this.contactAddress = contactAddress;
-	}
-
-	public String getContactEmail() {
-		return contactEmail;
-	}
-
-	public void setContactEmail(String contactEmail) {
-		this.contactEmail = contactEmail;
-	}
 
 	public List<User> getUsers() {
 		return users;
