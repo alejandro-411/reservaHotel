@@ -31,9 +31,8 @@ public class ContactDetails {
 		super();
 	}
 
-	public ContactDetails(long contactDetailsId, String contactName, String contactNumber) {
+	public ContactDetails( String contactName, String contactNumber) {
 		super();
-		this.contactDetailsId = contactDetailsId;
 		this.contactName = contactName;
 		this.contactNumber = contactNumber;
 		

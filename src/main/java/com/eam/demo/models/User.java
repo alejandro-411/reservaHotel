@@ -20,10 +20,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 
-	@Column(name = "userName")
+	@Column(name = "userName",  unique=true)
 	private String userName;
 
-	@Column(name = "userEmail", unique=true)
+	@Column(name = "userEmail")
 	private String userEmail;
 
 	@Column(name = "userPassword")
