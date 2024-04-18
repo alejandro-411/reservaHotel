@@ -92,11 +92,11 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String procesarInicioSesion(Model model, String userEmail, String password) {
+	public String procesarInicioSesion(Model model, String userName, String password) {
 
 		System.out.println("procesarInicioSesion");
 
-		User findUser = userRepository.findByUserName(userEmail);
+		User findUser = userRepository.findByUserName(userName);
 		System.out.println("Entroooo");
 
 	    System.out.println(findUser);
@@ -104,7 +104,7 @@ public class UserController {
 	    System.out.println(findUser.getUserPassword());
 	    System.out.println(!findUser.getUserPassword().equals(password));
 	    System.out.println((password));
-	    System.out.println((userEmail));
+	    System.out.println((userName));
 
 		if(findUser == null) {
 
