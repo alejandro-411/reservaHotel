@@ -32,13 +32,12 @@ public class Location {
 	
 	
 	
-	public Location(long locationId, String address, String neighborhood, City city, Hotel hotel) {
+	public Location(long locationId, String address, String neighborhood, City city) {
 		super();
 		this.locationId = locationId;
 		this.address = address;
 		this.neighborhood = neighborhood;
 		this.city = city;
-		this.hotel = hotel;
 	}
 
 

@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import java.sql.Blob;
+
 import jakarta.persistence.*;
 //Clase mapeada
 @Entity
@@ -11,7 +13,8 @@ public class Image {
 	private long imageId;
 
 	@Column(name = "imageLocation")
-	private String imageLocation;
+	@Lob
+	private Blob imageLocation;
 
 	@Column(name = "imageName")
 	private String imageName;
@@ -28,7 +31,7 @@ public class Image {
 	}
 
 
-	public Image(long imageId, String imageLocation, String imageName, Hotel hotel) {
+	public Image(long imageId, Blob imageLocation, String imageName, Hotel hotel) {
 		super();
 		this.imageId = imageId;
 		this.imageLocation = imageLocation;
@@ -47,12 +50,12 @@ public class Image {
 	}
 
 
-	public String getImageLocation() {
+	public Blob getImageLocation() {
 		return imageLocation;
 	}
 
 
-	public void setImageLocation(String imageLocation) {
+	public void setImageLocation(Blob imageLocation) {
 		this.imageLocation = imageLocation;
 	}
 

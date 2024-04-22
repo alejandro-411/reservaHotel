@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Room Form</title>
+</head>
+<body>
+    <h1>Room Form</h1>
+    <form th:action="@{/hotel/createroom}" method="post" th:object="${room}" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{roomId}"/>
+        
+        <label for="roomNumber">Room Number:</label>
+        <input type="number" id="roomNumber" name="roomNumber" th:field="*{roomNumber}"/>
+        <br>
+        <br>
+        <label for="pricePerNight">Price per Night:</label>
+        <input type="number" id="pricePerNight" name="pricePerNight" step="0.01" th:field="*{pricePerNight}"/>
+        <br>
+        <br>
+        <label for="availability">Availability:</label>
+        <input type="checkbox" id="availability" name="availability" th:field="*{avalability}"/>
+        <br>
+        <br>
+        <label for="amenitiesDetails">Amenities Details:</label>
+        <input type="text" id="amenitiesDetails" name="amenitiesDetails" th:field="*{amenitiesDetails}"/>
+        <br>
+        <br>
+        <label>Room Type:</label>
+        <select th:field="*{roomType.typeRoomId}">
+            <option th:each="type : ${roomTypes}" th:value="${type.typeRoomId}" th:text="${type.roomTypeName}"></option>
+        </select><br/>
+        <input hidden name="hotelId4" th:value="${hotelId}" />
+
+        
+
+        
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
