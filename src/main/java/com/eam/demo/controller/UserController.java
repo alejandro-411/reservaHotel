@@ -39,28 +39,32 @@ public class UserController {
 	}
 
 	@GetMapping("/userform")
-	public String mostrarFormularioUsuario(Model model) {
-		// Crea un nuevo objeto User y agrégalo al modelo
-		User newUser = new User();
-		newUser.setRol(new Rol());  // Inicializa el objeto Rol
-		newUser.setContactDetails(new ContactDetails()); //inicializa el objeto contac details
-         
-		model.addAttribute("user", newUser);
+public String mostrarFormularioUsuario(Model model) {
+    // Crea un nuevo objeto User y agrégalo al modelo
+    User newUser = new User();
+    newUser.setRol(new Rol());  // Inicializa el objeto Rol
+    newUser.setContactDetails(new ContactDetails()); //inicializa el objeto contac details
 
-		// Agrega roles al modelo (asume que rolesRepository.findAll() devuelve una lista de roles)
-		List<Rol> roles = rolRepository.findAll();
-		System.out.println("roles " + roles.get(0).getRolName());
+    model.addAttribute("user", newUser);
 
-		model.addAttribute("roles", roles);
+    // Agrega roles al modelo (asume que rolesRepository.findAll() devuelve una lista de roles)
+    List<Rol> roles = rolRepository.findAll();
+    if (!roles.isEmpty()) {
+        System.out.println("roles " + roles.get(0).getRolName());
+    } else {
+        System.out.println("No roles found");
+    }
 
-		// Agrega detalles de contacto al modelo (asume que contactDetailsRepository.findAll() devuelve una lista de detalles de contacto)
-		List<ContactDetails> contactDetails = contactDetailsRepository.findAll();
-	//	System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
-		//model.addAttribute("contactDetails", contactDetails);
+    model.addAttribute("roles", roles);
 
-		// Retorna el nombre de la plantilla (userform.html)
-		return "userform";
-	}
+    // Agrega detalles de contacto al modelo (asume que contactDetailsRepository.findAll() devuelve una lista de detalles de contacto)
+    List<ContactDetails> contactDetails = contactDetailsRepository.findAll();
+    // System.out.println("contactDetails "+ contactDetails.get(0).getContactName());
+    // model.addAttribute("contactDetails", contactDetails);
+
+    // Retorna el nombre de la plantilla (userform.html)
+    return "userform";
+}
 
 	@GetMapping("/list")
 	public String mostrarList(User user, Model model) {

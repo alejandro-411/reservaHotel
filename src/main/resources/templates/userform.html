@@ -24,10 +24,10 @@
                 </div>
             </div>
                        <!-- Agrega un campo para seleccionar el Rol -->
-        <label for="rol">Rol:</label>
-        <select th:field="*{rol.rolId}" required>
-            <option th:each="r : ${roles}" th:value="${r.rolId}" th:text="${r.rolName}"></option>
-        </select>
+        <label for="rolId">Rol:</label>
+<select id="rolId" th:field="*{rol.rolId}" required>
+    <option th:each="r : ${roles}" th:value="${r.rolId}" th:text="${r.rolName}"></option>
+</select>
         <br>
             <div class = "form-group row">
                 <label class = "col-sm-4 col-form-label">Phone Number</label>
@@ -68,11 +68,7 @@
                 <button type="submit" class="btn btn-primary m-2">Save</button>
                 <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
             </div>
-            
-            
-            
              </div>
-     
         </div>
     </form>
 
