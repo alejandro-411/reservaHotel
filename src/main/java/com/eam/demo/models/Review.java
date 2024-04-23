@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Review {
 	// Definición de la relación ManyToOne con la entidad hotel
 	@ManyToOne
 	@JoinColumn(name = "hotels_id", referencedColumnName = "hotelId")
+	@JsonIgnore
 	private Hotel hotel;
 
 	public Review() {

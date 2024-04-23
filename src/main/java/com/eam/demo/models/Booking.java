@@ -3,6 +3,8 @@ package com.eam.demo.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +38,7 @@ public class Booking {
 	// Definición de la relación ManyToOne con la entidad Hotel
 	@ManyToOne
 	@JoinColumn(name = "Hotel_id", referencedColumnName = "hotelId")
+	@JsonIgnore
 	Hotel hotel;
 
 	// Relación OneToMany con la clase Room

@@ -2,7 +2,17 @@ package com.eam.demo.models;
 
 import java.sql.Blob;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 //Clase mapeada
 @Entity
 @Table(name = "Images")
@@ -23,6 +33,7 @@ public class Image {
 	// Definición de la relación ManyToOne con la entidad Hotel
 	@ManyToOne
 	@JoinColumn(name = "hotel_Id", referencedColumnName = "hotelId")
+	@JsonIgnore
 	private Hotel hotel;
 
 
