@@ -18,7 +18,7 @@ import jakarta.persistence.Table;
 public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private int idBooking;
+	private Long idBooking;
 
 	@Column(name = "reservationEntryDate")
 	Date reservationEntryDate;
@@ -53,7 +53,7 @@ public class Booking {
 		super();
 	}
 
-	public Booking(int idBooking, Date reservationEntryDate, Date reservationDepartureDate,
+	public Booking(Long idBooking, Date reservationEntryDate, Date reservationDepartureDate,
 			double totalReservationPrice, User user, Hotel hotel, List<Room> rooms, ReserveStatus reserveStatus) {
 		super();
 		this.idBooking = idBooking;
@@ -66,11 +66,11 @@ public class Booking {
 		this.reserveStatus = reserveStatus;
 	}
 
-	public int getIdBooking() {
+	public Long getIdBooking() {
 		return idBooking;
 	}
 
-	public void setIdBooking(int idBooking) {
+	public void setIdBooking(Long idBooking) {
 		this.idBooking = idBooking;
 	}
 

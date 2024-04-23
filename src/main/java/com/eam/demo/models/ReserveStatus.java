@@ -16,7 +16,7 @@ public class ReserveStatus {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id	
-	private int idRerserveStatus;
+	private Long idRerserveStatus;
 
 	@Column(name = "nameReserveStatus")
 	private String nameReserveStatus;
@@ -34,7 +34,7 @@ public class ReserveStatus {
 
 
 
-	public ReserveStatus(int idRerserveStatus, String nameReserveStatus, List<Booking> bookings) {
+	public ReserveStatus(Long idRerserveStatus, String nameReserveStatus, List<Booking> bookings) {
 		super();
 		this.idRerserveStatus = idRerserveStatus;
 		this.nameReserveStatus = nameReserveStatus;
@@ -43,13 +43,13 @@ public class ReserveStatus {
 
 
 
-	public int getIdRerserveStatus() {
+	public Long getIdRerserveStatus() {
 		return idRerserveStatus;
 	}
 
 
 
-	public void setIdRerserveStatus(int idRerserveStatus) {
+	public void setIdRerserveStatus(Long idRerserveStatus) {
 		this.idRerserveStatus = idRerserveStatus;
 	}
 

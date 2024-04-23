@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.eam.demo.models.ContactDetails;
+import com.eam.demo.models.Department;
+import com.eam.demo.models.Hotel;
 import com.eam.demo.models.Rol;
 import com.eam.demo.models.User;
 import com.eam.demo.repository.IContactDetailsRepository;
@@ -48,7 +50,6 @@ public class UserController {
 		// Agrega roles al modelo (asume que rolesRepository.findAll() devuelve una lista de roles)
 		List<Rol> roles = rolRepository.findAll();
 		System.out.println("roles " + roles.get(0).getRolName());
-		//System.out.println("roles " + roles.get(1).getRolName());
 
 		model.addAttribute("roles", roles);
 
@@ -80,18 +81,33 @@ public class UserController {
 
 	@PostMapping("/save")
 	public String saveUser(User user, RedirectAttributes ra){
+		ContactDetails contactDetailsSaved =contactDetailsRepository.save(new ContactDetails(user.getContactDetails().getContactName(),user.getContactDetails().getContactNumber()));
+         user.setContactDetails(contactDetailsSaved);
+		
+		
+		
 		userRepository.save(user);
 		ra.addFlashAttribute("message", "The user has ben created succesfully.");
 		return "redirect:/user";
 	}
 
 	@PostMapping("/login")
-	public String procesarInicioSesion(Model model, String userEmail, String password) {
+	public String procesarInicioSesion(Model model, String userName, String password) {
 
 		System.out.println("procesarInicioSesion");
 
-		User findUser = userRepository.findByUserEmail(userEmail);
+		User findUser = userRepository.findByUserName(userName);
+		System.out.println("Entroooo");
+
+	    System.out.println(findUser);
+	    System.out.println(findUser.getUserEmail());
+	    System.out.println(findUser.getUserPassword());
+	    System.out.println(!findUser.getUserPassword().equals(password));
+	    System.out.println((password));
+	    System.out.println((userName));
+
 		if(findUser == null) {
+
 			model.addAttribute("error", true);
 			return "userHome";
 		}
@@ -107,6 +123,7 @@ public class UserController {
 	@GetMapping("/userdetail")
     public String mostrarDetallesUsuario(Model model) {
         // Lógica para obtener detalles del usuario si es necesario
+		
         return "userdetail";
     }
 

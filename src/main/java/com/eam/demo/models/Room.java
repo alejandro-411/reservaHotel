@@ -29,13 +29,19 @@ public class Room {
     @ManyToOne
      @JoinColumn(name = "Booking_id", referencedColumnName = "idBooking")
      private Booking booking;
+    
+
+	// Definición de la relación ManyToOne con la entidad Hotel
+	@ManyToOne
+	@JoinColumn(name = "Hotel_id", referencedColumnName = "hotelId")
+	Hotel hotel;
 	
 	public Room() {
 		super();
 	}
 
 	public Room(long roomId, int roomNumber, double pricePerNight, boolean avalability, String amenitiesDetails,
-			RoomType roomType, Booking booking) {
+			RoomType roomType, Hotel hotel) {
 		super();
 		this.roomId = roomId;
 		this.roomNumber = roomNumber;
@@ -43,7 +49,7 @@ public class Room {
 		this.avalability = avalability;
 		this.amenitiesDetails = amenitiesDetails;
 		this.roomType = roomType;
-		this.booking = booking;
+		this.hotel=hotel;
 	}
 
 	public long getRoomId() {
@@ -100,6 +106,14 @@ public class Room {
 
 	public void setBooking(Booking booking) {
 		this.booking = booking;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 

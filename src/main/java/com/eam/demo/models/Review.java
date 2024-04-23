@@ -15,7 +15,7 @@ public class Review {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private int idReview;	
+	private Long idReview;	
 
 	@Column(name = "tittleReview")	
 	private String tittleReview;
@@ -36,7 +36,7 @@ public class Review {
 		super();
 	}
 
-	public Review(int idReview, String tittleReview, User user, String contentReview, Hotel hotel) {
+	public Review(Long idReview, String tittleReview, User user, String contentReview, Hotel hotel) {
 		super();
 		this.idReview = idReview;
 		this.tittleReview = tittleReview;
@@ -45,11 +45,11 @@ public class Review {
 		this.hotel = hotel;
 	}
 
-	public int getIdReview() {
+	public Long getIdReview() {
 		return idReview;
 	}
 
-	public void setIdReview(int idReview) {
+	public void setIdReview(Long idReview) {
 		this.idReview = idReview;
 	}
 

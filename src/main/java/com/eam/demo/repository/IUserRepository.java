@@ -10,5 +10,5 @@ import com.eam.demo.models.User;
 public interface IUserRepository extends JpaRepository<User, Long>{
 	
 	User findByUserEmail(String userEmail)	;
-
+	User findByUserName(String userName);
 }
