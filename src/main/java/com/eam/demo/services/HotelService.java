@@ -16,11 +16,14 @@ import com.eam.demo.models.Department;
 import com.eam.demo.models.Hotel;
 import com.eam.demo.models.HotelAmenities;
 import com.eam.demo.models.Location;
+import com.eam.demo.models.RoomType;
 import com.eam.demo.repository.IAmenitiesRepository;
 import com.eam.demo.repository.ICityRepository;
 import com.eam.demo.repository.IDepartmentRepository;
 import com.eam.demo.repository.IHotelAmenitiesRepository;
 import com.eam.demo.repository.IHotelRepository;
+import com.eam.demo.repository.IRoomRepository;
+import com.eam.demo.repository.IRoomTypeRepository;
 import com.eam.demo.repository.IlocationRepository;
 
 @Service
@@ -40,6 +43,12 @@ public class HotelService {
 
     @Autowired
     private IHotelAmenitiesRepository hotelAmenitiesRepository;
+
+    @Autowired
+    private IRoomRepository roomRepository;
+
+    @Autowired
+    private IRoomTypeRepository roomTypeRepository;
 
     public List<Hotel> listHotels(){
         return hotelRepository.findAll();
@@ -101,18 +110,6 @@ public class HotelService {
             location.setHotel(hotelSaved);
             locationRepository.save(location);
         });
-
-        List<Amenities> amenities = new ArrayList<Amenities>();
-
-        for(int i = 0 ; i < hotel.getHotelAmenities().size();i++){
-                hotel.getHotelAmenities().get(i).setHotel(hotelSaved);
-
-amenitiesRepository.findById(hotel.getHotelAmenities().get(i).getAmenities().getAmenitiesId()).
-ifPresent((amenity)->{amenities.add(amenity);});
-
-                System.out.println(hotel.getHotelAmenities().get(i));
-        }
-        hotelAmenitiesRepository.saveAll(hotel.getHotelAmenities());
 
         return hotelSaved.getHotelId();
 

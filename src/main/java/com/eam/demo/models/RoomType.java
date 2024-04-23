@@ -15,18 +15,14 @@ public class RoomType {
 	@Column(name = "roomTypeName")
 	private String roomTypeName;
 	
-	@OneToMany(mappedBy = "roomType")
-	private List<Room> rooms;
-	
 	public RoomType() {
 		
 	}
 
-	public RoomType(long typeRoomId, String roomTypeName, List<Room> room) {
+	public RoomType(long typeRoomId, String roomTypeName) {
 		super();
 		this.typeRoomId = typeRoomId;
 		this.roomTypeName = roomTypeName;
-		this.rooms = room;
 	}
 
 	public long getTypeRoomId() {
@@ -45,13 +41,5 @@ public class RoomType {
 		this.roomTypeName = roomTypeName;
 	}
 
-	public List<Room> getRoom() {
-		return rooms;
-	}
-
-	public void setRoom(List<Room> room) {
-		this.rooms = room;
-	}
-	
 	
 }

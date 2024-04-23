@@ -41,7 +41,6 @@ public class HotelControllerRest {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> crearHotel(@RequestBody Hotel hotel) {
-        System.out.println("HOTEL " + hotel.getHotelAmenities().size());
         hotelService.saveHotelRest(hotel);
         return new ResponseEntity<>("Hotel Created", HttpStatus.OK);
 
@@ -68,10 +67,7 @@ public class HotelControllerRest {
                     hotel.setHotelName(hotelActualizado.getHotelName());
                     hotel.setAvailability(hotelActualizado.isAvailability());
                     hotel.setRating(hotelActualizado.getRating());
-                    hotel.setLocation(hotelActualizado.getLocation());
-                    hotel.setImages(hotelActualizado.getImages());
-                    hotel.setHotelAmenities(hotelActualizado.getHotelAmenities());
-                    hotel.setRooms(hotelActualizado.getRooms());
+                    hotel.setLocation(hotelActualizado.getLocation());                   
                     hotelRepository.save(hotel);
                     return new ResponseEntity<>("Hotel Actualizado", HttpStatus.OK);
                 })

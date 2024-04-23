@@ -21,24 +21,16 @@ public class ReserveStatus {
 	@Column(name = "nameReserveStatus")
 	private String nameReserveStatus;
 
-	// Relación OneToMany con la clase Bookings
-	@OneToMany(mappedBy = "reserveStatus")
-	private List<Booking> Bookings;
-
-
-
-
 	public ReserveStatus() {
 		super();
 	}
 
 
 
-	public ReserveStatus(Long idRerserveStatus, String nameReserveStatus, List<Booking> bookings) {
+	public ReserveStatus(Long idRerserveStatus, String nameReserveStatus) {
 		super();
 		this.idRerserveStatus = idRerserveStatus;
 		this.nameReserveStatus = nameReserveStatus;
-		Bookings = bookings;
 	}
 
 
@@ -64,19 +56,5 @@ public class ReserveStatus {
 	public void setNameReserveStatus(String nameReserveStatus) {
 		this.nameReserveStatus = nameReserveStatus;
 	}
-
-
-
-	public List<Booking> getBookings() {
-		return Bookings;
-	}
-
-
-
-	public void setBookings(List<Booking> bookings) {
-		Bookings = bookings;
-	}
-
-
 
 }

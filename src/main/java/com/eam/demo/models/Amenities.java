@@ -15,11 +15,7 @@ public class Amenities {
 	@Column(name = "amenitiesName")
 	private String amenitiesName;
 
-	
-	// Relación OneToMany con la clase HotelAmenities
-    @OneToMany(mappedBy = "amenities")
-    private List<HotelAmenities> hotelAmenities;
-	
+		
 	public Amenities() {
 		super();
 	}
@@ -30,7 +26,6 @@ public class Amenities {
 		super();
 		this.amenitiesId = amenitiesId;
 		this.amenitiesName = amenitiesName;
-		this.hotelAmenities = hotelAmenities;
 	}
 
 
@@ -51,16 +46,6 @@ public class Amenities {
 		this.amenitiesName = amenitiesName;
 	}
 
-	public List<HotelAmenities> getHotelAmenities() {
-		return hotelAmenities;
-	}
-
-	public void setHotelAmenities(List<HotelAmenities> hotelAmenities) {
-		this.hotelAmenities = hotelAmenities;
-	}
-
-
-	
 	
 	
 }

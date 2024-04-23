@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 //Clase mapeada
@@ -21,8 +23,9 @@ public class Location {
 	@JoinColumn(name = "cities_id", referencedColumnName = "cityId")
 	private City city;
 	
-	 @OneToOne
-	 @JoinColumn(name = "hotels_id",  referencedColumnName = "hotelId")
+	@OneToOne
+	@JoinColumn(name = "hotels_id",  referencedColumnName = "hotelId")
+	@JsonIgnore
 	private Hotel hotel;
 
 	public Location() {

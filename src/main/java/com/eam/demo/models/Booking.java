@@ -38,12 +38,7 @@ public class Booking {
 	// Definición de la relación ManyToOne con la entidad Hotel
 	@ManyToOne
 	@JoinColumn(name = "Hotel_id", referencedColumnName = "hotelId")
-	@JsonIgnore
 	Hotel hotel;
-
-	// Relación OneToMany con la clase Room
-	@OneToMany(mappedBy = "booking")
-	private List<Room> rooms;
 
 
 	// Definición de la relación ManyToOne con la entidad ReserveStatus
@@ -57,7 +52,7 @@ public class Booking {
 	}
 
 	public Booking(Long idBooking, Date reservationEntryDate, Date reservationDepartureDate,
-			double totalReservationPrice, User user, Hotel hotel, List<Room> rooms, ReserveStatus reserveStatus) {
+			double totalReservationPrice, User user, Hotel hotel, ReserveStatus reserveStatus) {
 		super();
 		this.idBooking = idBooking;
 		this.reservationEntryDate = reservationEntryDate;
@@ -65,7 +60,6 @@ public class Booking {
 		this.totalReservationPrice = totalReservationPrice;
 		this.user = user;
 		this.hotel = hotel;
-		this.rooms = rooms;
 		this.reserveStatus = reserveStatus;
 	}
 
@@ -121,18 +115,6 @@ public class Booking {
 
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
-	}
-
-
-
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
 	}
 
 
