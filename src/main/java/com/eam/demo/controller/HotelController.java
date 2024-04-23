@@ -13,6 +13,8 @@ import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
 import com.eam.demo.repository.*;
+import com.eam.demo.services.HotelService;
+
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -75,6 +77,9 @@ public class HotelController {
 	@Autowired
 	private IRoomRepository roomRepository;
     
+	private HotelService hotelService;
+
+
 	@GetMapping("")
 	public String mostrarFormulario() {
 		return "hotelform";
@@ -85,7 +90,6 @@ public class HotelController {
 		   // Crea un nuevo objeto Hotel y agrégalo al modelo
         Hotel newHotel = new Hotel();
         newHotel.setLocation(new Location());  // Inicializa el objeto Location
-        newHotel.setImages(new ArrayList<Image>());  // Inicializa la lista de imágenes
 
         List<Amenities> amenitiesAvaliable = this.amenitiesRepository.findAll();
         
@@ -123,41 +127,12 @@ public class HotelController {
 		System.out.println("LOCATION City"+ hotel.getLocation().getCity().getCityName());
 		System.out.println("LOCATION Department"+ hotel.getLocation().getCity().getDepartment().getDepartmentName());
 
-		Department departmentCreated =departmentRepository.save(new Department(null, hotel.getLocation().getCity().getDepartment().getDepartmentName(), null));
-		
-		
-		City cityCreated = cityRepository.save(new City(0, 
-				hotel.getLocation().getCity().getCityName(), departmentCreated, null));
-		
-		
-		Location locationSaved = locationRepository.save(new Location(0, hotel.getLocation().getAddress(),
-				hotel.getLocation().getNeighborhood(), cityCreated));
-		
-		hotel.setLocation(locationSaved);
-		
-		Hotel hotelSaved = hotelRepository.save(hotel);
-		
-		Optional<Location> locationByID = locationRepository.findById(locationSaved.getLocationId());
-		locationByID.ifPresent((location)-> {location.setHotel(hotelSaved);
-		locationRepository.save(location);});
-		
+		Long idHotel = hotelService.saveHotel(hotel, amenitiesIds);
 
-		List<Long> idsAmenities = Arrays.asList(amenitiesIds); // Ejemplo de lista de IDs de cursos
-
-		List<Amenities> amenities = idsAmenities.stream()
-			    .map(idCurso -> amenitiesRepository.findById(idCurso).orElseThrow(() -> new RuntimeException("Curso no encontrado con ID: " + idCurso)))
-			    .collect(Collectors.toList());
-		
-		// Crear instancias de EstudianteCurso y guardarlas
-		List<HotelAmenities> hotelAmenities = amenities.stream()
-		    .map(amenity -> new HotelAmenities(amenity, hotelSaved))
-		    .collect(Collectors.toList());
-		
-		hotelAmenitiesRepository.saveAll(hotelAmenities);	
-		
-		
+			
+		 
 		ra.addFlashAttribute("message", "The hotel has ben created succesfully.");
-		ra.addFlashAttribute("hotelId", hotelSaved.getHotelId());
+		ra.addFlashAttribute("hotelId", idHotel);
 
 		return "redirect:/hotel/imagesform";
 	}
