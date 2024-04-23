@@ -6,13 +6,111 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        /* Agrega estilos personalizados aquí si es necesario */
+    </style>
 </head>
 <body>
-<div th:fragment = "botonholis">
-<button >  holis</button>
-    <button >  como</button>
-    <button >  estas</button>
-    <button >  :):):)</button>
+
+<div th:fragment="botonholis">
+    <button>holis</button>
+    <button>como</button>
+    <button>estas</button>
+    <button>:):):)</button>
 </div>
+
+<!-- Fragmento para el header -->
+<div th:fragment="header">
+    <header class="navbar navbar-expand-lg navbar-dark bg-info mb-4">
+        <div class="container">
+            <!-- Logo y nombre del hotel -->
+            <a class="navbar-brand" href="#">
+                <img src="/images/logo.jpg" alt=" Natural Wonders" height="30">
+                Hotel Awesome
+            </a>
+
+            <!-- Botón hamburguesa para menú en dispositivos móviles -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menú de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Habitaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reservas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Acerca de</a>
+                    </li>
+                    <!-- Más elementos del menú aquí -->
+                </ul>
+            </div>
+
+            <!-- Botones "Registrarse" e "Iniciar sesión" -->
+            <div class="ml-3">
+                <a href="#" class="btn btn-outline-light mr-2">Registrarse</a>
+                <a href="#" class="btn btn-light">Iniciar sesión</a>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+
+
+<!-- Fragmento para el footer -->
+<div th:fragment="footer">
+    <footer class="footer bg-info text-light py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-4 mb-2">
+                    <!-- Contactanos (Lista desplegable) -->
+                    <h6>Contactanos</h6>
+                    <ul class="list-unstyled collapse show" id="contactanos">
+                        <li><a href="#">Lineas de contacto</a></li>
+                    </ul>
+                    <button class="btn btn-link p-0" type="button" data-toggle="collapse" data-target="#contactanos" aria-expanded="true" aria-controls="contactanos">
+                      
+                    </button>
+                </div>
+                <div class="col-6 col-md-4 mb-2">
+                    <!-- Politicas y Privacidad (Lista desplegable) -->
+                    <h6>Politicas y Privacidad</h6>
+                    <ul class="list-unstyled collapse show" id="politicas">
+                        <li><a href="#">Terminos y Condiciones</a></li>
+                    </ul>
+                    <button class="btn btn-link p-0" type="button" data-toggle="collapse" data-target="#politicas" aria-expanded="true" aria-controls="politicas">
+                     
+                    </button>
+                </div>
+                <div class="col-12 col-md-4 mb-2 d-flex align-items-center justify-content-center">
+                    <!-- Logos de redes sociales -->
+                    <img src="/images/face.png" alt="Facebook" class="img-fluid mr-2" width="30">
+                    <img src="/images/tikt.png" alt="Tiktok" class="img-fluid mr-2" width="30">
+                    <img src="/images/insta.png" alt="Instagram" class="img-fluid" width="30">
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+
+
+
 </body>
 </html>
