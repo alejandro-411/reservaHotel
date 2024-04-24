@@ -68,7 +68,6 @@ public class Hotel {
 		this.hotelAmenities = hotelAmenities;
 		this.rooms=rooms;
 		this.user = user;
-		
 	}
 
 	public User getUser() {
