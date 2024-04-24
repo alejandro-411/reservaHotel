@@ -46,14 +46,18 @@ public class Hotel {
     // Relación OneToMany con la clase Room
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
-    
+
+	// Definición de la relación ManyToOne con la entidad User
+	@ManyToOne
+	@JoinColumn(name = "user_Id", referencedColumnName = "userId")
+	private User user;
 
 	public Hotel() {
 
 	}
 
 	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location,
-			 List<Image> images, List<HotelAmenities> hotelAmenities, List<Room> rooms) {
+			 List<Image> images, List<HotelAmenities> hotelAmenities, List<Room> rooms, User user) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
@@ -63,7 +67,16 @@ public class Hotel {
 	    this.images = images;
 		this.hotelAmenities = hotelAmenities;
 		this.rooms=rooms;
+		this.user = user;
 		
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public long getHotelId() {
@@ -153,6 +166,7 @@ public class Hotel {
 	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
 	}
+
 
 
 }
