@@ -2,6 +2,8 @@ package com.eam.demo.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Table(name = "Hotels")
@@ -24,59 +26,22 @@ public class Hotel {
 	@OneToOne(mappedBy = "hotel")
 	private Location location;
 
-
-    // Relación OneToMany con la clase Review
-    @OneToMany(mappedBy = "hotel")
-    private List<Review>reviews;
-
-
- // Relación OneToMany con la clase Review
-    @OneToMany(mappedBy = "hotel")
-    private List<Image>  images;
-
-    
- // Relación OneToMany con la clase HotelAmenities
-    @OneToMany(mappedBy = "hotel")
-    private List<HotelAmenities> hotelAmenities;
-    
-    // Relación OneToMany con la clase Booking
-    @OneToMany(mappedBy = "hotel")
-    private List<Booking> bookings;
-    
-    // Relación OneToMany con la clase Room
-    @OneToMany(mappedBy = "hotel")
-    private List<Room> rooms;
-
-	// Definición de la relación ManyToOne con la entidad User
 	@ManyToOne
-	@JoinColumn(name = "user_Id", referencedColumnName = "userId")
+	@JoinColumn(name = "user_id", referencedColumnName = "userId")
 	private User user;
 
 	public Hotel() {
 
 	}
 
-	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location,
-			 List<Image> images, List<HotelAmenities> hotelAmenities, List<Room> rooms, User user) {
+	public Hotel(long hotelId, String hotelName, boolean availability, int rating, Location location, User user) {
 		super();
 		this.hotelId = hotelId;
 		this.hotelName = hotelName;
 		this.availability = availability;
 		this.rating = rating;
 		this.location = location;
-	    this.images = images;
-		this.hotelAmenities = hotelAmenities;
-		this.rooms=rooms;
-		this.user = user;
-		
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+		this.user =user;		
 	}
 
 	public long getHotelId() {
@@ -119,54 +84,12 @@ public class Hotel {
 		this.location = location;
 	}
 
-	public List<Review> getReview() {
-		return reviews;
+	public User getUser() {
+		return user;
 	}
 
-	public void setReview(List<Review> review) {
-		this.reviews = review;
+	public void setUser(User  user) {
+		this.user = user;
 	}
-
-	public List<Image> getImages() {
-		return images;
-	}
-
-	public void setImages(List<Image> images) {
-		this.images = images;
-	}
-
-	public List<HotelAmenities> getHotelAmenities() {
-		return hotelAmenities;
-	}
-
-	public void setHotelAmenities(List<HotelAmenities> hotelAmenities) {
-		this.hotelAmenities = hotelAmenities;
-	}
-
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
-	}
-
-
-
+	
 }

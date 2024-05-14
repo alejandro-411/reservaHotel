@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Table(name = "Rooms")
@@ -34,6 +36,7 @@ public class Room {
 	// Definición de la relación ManyToOne con la entidad Hotel
 	@ManyToOne
 	@JoinColumn(name = "Hotel_id", referencedColumnName = "hotelId")
+	@JsonIgnore
 	Hotel hotel;
 	
 	public Room() {

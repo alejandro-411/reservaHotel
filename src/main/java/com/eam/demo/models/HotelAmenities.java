@@ -1,5 +1,7 @@
 package com.eam.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Table(name = "HotelAmenities")
@@ -18,6 +20,7 @@ public class HotelAmenities {
     // Definición de la relación ManyToOne con la entidad Hotel
     @ManyToOne
 	@JoinColumn(name = "hotel_idDA", referencedColumnName = "hotelId")
+	@JsonIgnore
 	Hotel hotel;
 
 	

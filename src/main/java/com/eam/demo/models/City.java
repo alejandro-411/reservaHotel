@@ -20,9 +20,6 @@ public class City {
 	@JoinColumn(name = "departments_id", referencedColumnName = "departmentId")
 	private Department department;
 
-	@OneToMany(mappedBy = "city")
-	private List<Location> locations;
-	
 	public City() {
 
 	}
@@ -32,7 +29,6 @@ public class City {
 		this.cityId = cityId;
 		this.cityName = cityName;
 		this.department = department;
-		this.locations = locations;
 	}
 
 	public long getCityId() {
@@ -57,14 +53,6 @@ public class City {
 
 	public void setDepartment(Department department) {
 		this.department = department;
-	}
-
-	public List<Location> getLocation() {
-		return locations;
-	}
-
-	public void setLocation(List<Location> location) {
-		this.locations = location;
 	}
 
 }

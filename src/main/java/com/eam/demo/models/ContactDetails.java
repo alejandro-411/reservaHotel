@@ -20,10 +20,6 @@ public class ContactDetails {
 	private String contactNumber;
 	
 	
-	@OneToMany(mappedBy = "contactDetails")
-	private List<User> users;
-
-	
 	
 	
 
@@ -62,15 +58,6 @@ public class ContactDetails {
 		this.contactNumber = contactNumber;
 	}
 
-
-
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
 
 
 	

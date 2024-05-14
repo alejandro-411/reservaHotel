@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Reservas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Reservas</h1>
+
+    <!-- Formulario de Filtros -->
+    <form th:action="@{/booking/listBookings}" method="get">
+        <div class="form-group">
+            <label for="startDate">Fecha de Entrada:</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" th:value="${startDate}" required />
+        </div>
+        <div class="form-group">
+            <label for="endDate">Fecha de Salida:</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" th:value="${endDate}" required />
+        </div>
+        <div class="form-group">
+            <label for="hotelId">Hotel:</label>
+            <select class="form-control" id="hotelId" name="hotelId">
+                <option value="">Seleccione un Hotel</option>
+                <option th:each="hotel : ${hotels}"
+                        th:value="${hotel.hotelId}"
+                        th:text="${hotel.hotelName}"
+                        th:selected="${hotelId != null and hotel.hotelId == hotelId}">
+                </option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+
+    <!-- Tabla de Reservas -->
+    <table class="table mt-4">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Fecha de Entrada</th>
+            <th>Fecha de Salida</th>
+            <th>Precio Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="booking : ${bookings}">
+            <td th:text="${booking.idBooking}"></td>
+            <td th:text="${booking.reservationEntryDate}"></td>
+            <td th:text="${booking.reservationDepartureDate}"></td>
+            <td th:text="${booking.totalReservationPrice}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" th:href="@{/booking/download(startDate=${startDate},endDate=${endDate},hotelId=${hotelId})}">Descargar PDF</a>
+</div>
+</body>
+</html>

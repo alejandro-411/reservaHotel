@@ -1,7 +1,6 @@
 package com.eam.demo.models;
 
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Table(name = "Booking")
@@ -38,10 +36,6 @@ public class Booking {
 	@JoinColumn(name = "Hotel_id", referencedColumnName = "hotelId")
 	Hotel hotel;
 
-	// Relación OneToMany con la clase Room
-	@OneToMany(mappedBy = "booking")
-	private List<Room> rooms;
-
 
 	// Definición de la relación ManyToOne con la entidad ReserveStatus
 	@ManyToOne
@@ -54,7 +48,7 @@ public class Booking {
 	}
 
 	public Booking(Long idBooking, Date reservationEntryDate, Date reservationDepartureDate,
-			double totalReservationPrice, User user, Hotel hotel, List<Room> rooms, ReserveStatus reserveStatus) {
+			double totalReservationPrice, User user, Hotel hotel, ReserveStatus reserveStatus) {
 		super();
 		this.idBooking = idBooking;
 		this.reservationEntryDate = reservationEntryDate;
@@ -62,7 +56,6 @@ public class Booking {
 		this.totalReservationPrice = totalReservationPrice;
 		this.user = user;
 		this.hotel = hotel;
-		this.rooms = rooms;
 		this.reserveStatus = reserveStatus;
 	}
 
@@ -118,18 +111,6 @@ public class Booking {
 
 	public void setHotel(Hotel hotel) {
 		this.hotel = hotel;
-	}
-
-
-
-	public List<Room> getRooms() {
-		return rooms;
-	}
-
-
-
-	public void setRooms(List<Room> rooms) {
-		this.rooms = rooms;
 	}
 
 

@@ -85,7 +85,6 @@ public class HotelController {
 		   // Crea un nuevo objeto Hotel y agrégalo al modelo
         Hotel newHotel = new Hotel();
         newHotel.setLocation(new Location());  // Inicializa el objeto Location
-        newHotel.setImages(new ArrayList<Image>());  // Inicializa la lista de imágenes
 
         List<Amenities> amenitiesAvaliable = this.amenitiesRepository.findAll();
         
@@ -123,7 +122,7 @@ public class HotelController {
 		System.out.println("LOCATION City"+ hotel.getLocation().getCity().getCityName());
 		System.out.println("LOCATION Department"+ hotel.getLocation().getCity().getDepartment().getDepartmentName());
 
-		Department departmentCreated =departmentRepository.save(new Department(null, hotel.getLocation().getCity().getDepartment().getDepartmentName(), null));
+		Department departmentCreated =departmentRepository.save(new Department(0L, hotel.getLocation().getCity().getDepartment().getDepartmentName()));
 		
 		
 		City cityCreated = cityRepository.save(new City(0, 
@@ -181,7 +180,7 @@ public class HotelController {
 	    for (MultipartFile file : imageFiles) {
 	    	System.out.println(file.getOriginalFilename());
 	        byte[] image = Base64.encodeBase64(file.getBytes(), false);
-	       imageRepository.save(new Image(0, new SerialBlob(image), file.getOriginalFilename(), hotel.get()));
+	       imageRepository.save(new Image(0L, image.toString(), file.getOriginalFilename(), hotel.get()));
 	    }
 	    ra.addFlashAttribute("message", "Images uploaded successfully.");
 		ra.addFlashAttribute("hotelId3", hotelId);

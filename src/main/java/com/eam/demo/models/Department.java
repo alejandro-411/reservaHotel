@@ -17,19 +17,15 @@ public class Department {
 	private String departmentName;
 	
 	
-	@OneToMany(mappedBy = "department")
-	private List<City> cities;
-	
 	public Department() {
 		
 	}
 	
 
-	public Department(Long departmentId, String departmentName, List<City> cities) {
+	public Department(Long departmentId, String departmentName) {
 		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
-		this.cities = cities;
 	}
 
 

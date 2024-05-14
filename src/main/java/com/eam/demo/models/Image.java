@@ -2,7 +2,17 @@ package com.eam.demo.models;
 
 import java.sql.Blob;
 
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 //Clase mapeada
 @Entity
 @Table(name = "Images")
@@ -12,9 +22,9 @@ public class Image {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long imageId;
 
-	@Column(name = "imageLocation")
 	@Lob
-	private Blob imageLocation;
+    @Column(name = "image_location", columnDefinition = "MEDIUMBLOB")
+    private String imageLocation;
 
 	@Column(name = "imageName")
 	private String imageName;
@@ -31,7 +41,7 @@ public class Image {
 	}
 
 
-	public Image(long imageId, Blob imageLocation, String imageName, Hotel hotel) {
+	public Image(long imageId, String imageLocation, String imageName, Hotel hotel) {
 		super();
 		this.imageId = imageId;
 		this.imageLocation = imageLocation;
@@ -50,12 +60,12 @@ public class Image {
 	}
 
 
-	public Blob getImageLocation() {
-		return imageLocation;
+	public String  getImageLocation() {
+		return this.imageLocation;
 	}
 
 
-	public void setImageLocation(Blob imageLocation) {
+	public void setImageLocation(String imageLocation) {
 		this.imageLocation = imageLocation;
 	}
 
@@ -70,8 +80,8 @@ public class Image {
 	}
 
 
-	public Hotel getHotel() {
-		return hotel;
+	public Long getHotel() {
+		return hotel.getHotelId();
 	}
 
 
